@@ -66,6 +66,7 @@ collections:
           - label: Kort overzicht
             name: brief
             widget: list
+            required: false
             field: { label: Activiteit, name: item, widget: string }
 
       - label: Dag planning
@@ -81,4 +82,4 @@ collections:
             required: false
             fields:
               - { label: Titel, name: titel, widget: string, hint: "Bijv. Ochtend — Senso-ji Tempel" }
-              - { label: Beschrijving, name: beschrijving, widget: text }
+              - { label: Beschrijving, name: beschrijving, widget: text, required: false }
