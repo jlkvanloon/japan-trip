@@ -7,17 +7,18 @@ color: "#6d28d9"
 travel:
   from: Amsterdam (AMS)
   method: Vliegtuig
-  details: |
-    KLM KL861 | AMS 14:20 naar NRT 11:45+1 | 13u25 | Premium Comfort.
-    Neem de Narita Express van het vliegveld naar Shinjuku Station (circa 80 minuten).
-    Het hotel is op 5 minuten lopen van het station.
+  tijden: "14:20 AMS → 11:45+1 NRT"
+  vluchtnummer: KL861
+  duur: 13u25
+  klasse: Premium Comfort
 
 hotel:
   name: Hotel Sunroute Plaza Shinjuku
-  address: Shinjuku, Tokyo
-  notes: |
-    Inchecken vanaf 15:00. Uitchecken voor 11:00. Ontbijt inbegrepen.
-    Betaald 16 november: 235 euro.
+  url: "https://www.booking.com/hotel/jp/sunroute-plaza-shinjuku.nl.html"
+  checkIn: "vanaf 15:00"
+  checkOut: "voor 11:00"
+  breakfast: Inbegrepen
+  payment: "€235 — betaald 16 november"
 
 restaurants:
   - name: Ichiran Ramen Shinjuku
@@ -39,40 +40,18 @@ activities:
     - Meiji Shrine & Harajuku
     - Dagtocht naar Mount Fuji (Kawaguchiko)
     - Shinjuku Gyoen & Omoide Yokocho
-  detailed:
-    - name: Shibuya Crossing & Shibuya Sky
-      when: Dag 1 — avond
-      description: |
-        Begin bij de beroemdste kruising ter wereld. Ga daarna omhoog naar het Shibuya Sky
-        observatiedek (kaartjes vooraf online boeken) voor een 360 graden panorama over
-        de stad bij nacht. Een perfecte eerste avond in Tokyo.
-      tips: |
-        Boek Shibuya Sky kaartjes minstens een paar dagen van tevoren — ze raken snel
-        uitverkocht. Het uitzicht is het mooist na 19:00 wanneer de stad volledig verlicht is.
-    - name: Meiji Shrine & Harajuku
-      when: Dag 2 — hele dag
-      description: |
-        Begin bij Meiji Jingu, een serene shinto-schrijn in een bebost park vlak bij Harajuku.
-        Loop daarna door Takeshita Street voor excentrieke mode en crepes,
-        en stroll over het chique Omotesando-boulevard.
-      tips: |
-        De schrijntuin is gratis. Kom voor 09:00 om de binnentuin te zien voordat het druk wordt.
-        Takeshita Street is in het weekend extreem druk — ga vroeg.
-    - name: Dagtocht Mount Fuji (Kawaguchiko)
-      when: Dag 3 — hele dag
-      description: |
-        Rijd naar Kawaguchiko aan de voet van de Fuji. Vanuit Shinjuku neem je de Fuji
-        Excursion trein of een Keio-bus direct naar Kawaguchiko (circa 2 uur). Prachtige
-        reflecties van de Fuji in het meer, en het Chureito Pagode-uitzichtpunt is onmisbaar.
-      tips: |
-        Fuji is de helft van de tijd bedekt met wolken — ochtenduitzichten zijn het best.
-        Controleer de weersverwachting de avond ervoor en wees flexibel met de timing.
-    - name: Shinjuku — Gyoen & Omoide Yokocho
-      when: Dag 4 — avond (aankomstdag Joa & Sas)
-      description: |
-        Shinjuku Gyoen is een groot, prachtig onderhouden park — ideaal voor herfstbladeren
-        in late november. Ga 's avonds naar Omoide Yokocho ("Herinneringssteeg"), een smal
-        steegje vol kleine yakitori-stalletjes met rook die opstijgt in de nachtlucht.
-      tips: |
-        Omoide Yokocho is alleen contant betalen en erg klein — plaatsen zijn snel weg.
-        Ga voor 19:00 of na 21:00. Gyoen entree kost 500 yen.
+
+dagplanning:
+  - titel: Aankomst & Shibuya
+    content: |
+      Aankomst op Narita na lange vlucht. Narita Express naar Shinjuku (~80 min), inchecken hotel.
+      's Avonds Shibuya Crossing — de beroemdste kruising ter wereld. Daarna omhoog naar Shibuya Sky observatiedek voor panorama over de stad bij nacht. Kaartjes vooraf boeken.
+  - titel: Meiji Shrine & Harajuku
+    content: |
+      Begin vroeg bij Meiji Jingu, een serene shinto-schrijn in een bebost park. Loop daarna door Takeshita Street voor excentrieke mode en crepes, eindig op het chique Omotesando-boulevard.
+  - titel: Dagtocht Mount Fuji
+    content: |
+      Fuji Excursion trein of Keio-bus vanuit Shinjuku naar Kawaguchiko (~2 uur). Prachtige reflecties van de Fuji in het meer. Chureito Pagode-uitzichtpunt is onmisbaar. Ochtenduitzichten zijn het best — wolken trekken vaak op na de middag.
+  - titel: Shinjuku Gyoen & Omoide Yokocho
+    content: |
+      Shinjuku Gyoen voor herfstbladeren in de middag. 's Avonds Omoide Yokocho ("Herinneringssteeg") — smal steegje vol rokerige yakitori-stalletjes. Aankomstdag Joa & Sas.

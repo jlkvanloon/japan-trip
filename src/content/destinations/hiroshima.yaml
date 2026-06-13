@@ -7,16 +7,15 @@ color: "#1e4d78"
 travel:
   from: Kyoto
   method: Shinkansen
-  details: |
-    Nozomi of Hikari Shinkansen van Kyoto naar Hiroshima, circa 1 uur.
-    Met JR Pass neem je de Hikari (Nozomi vereist toeslag).
+  duur: "~1 uur"
 
 hotel:
   name: KIRO Hiroshima by THE SHARE HOTELS
-  address: Hiroshima
-  notes: |
-    Inchecken 15:00-23:00. Uitchecken tot 10:00.
-    Ontbijt niet inbegrepen. Betaald 23 november: 244 euro.
+  url: ""
+  checkIn: "15:00 – 23:00"
+  checkOut: "voor 10:00"
+  breakfast: Niet inbegrepen
+  payment: "€244 — betaald 23 november"
 
 restaurants:
   - name: Okonomi-mura
@@ -34,34 +33,8 @@ activities:
     - Vredesgedenkteken & Museum
     - Atoombom Koepel (UNESCO Werelderfgoed)
     - Miyajima Island & drijvende torii-poort
-    - Hiroshima-stijl okonomiyaki
-  detailed:
-    - name: Vredesgedenkteken & Museum
-      when: Dag 1 — ochtend
-      description: |
-        Het epicentrum van de atoombomaanval van 1945 is nu een herdenkingspark.
-        Het Vredesmuseum is diep ontroerend en essentieel — reken op 2 uur.
-        Het Kindermonument (papieren kraanvogels) en de Vredesvlam liggen vlakbij.
-      tips: |
-        Het museum kan emotioneel zwaar zijn — geef jezelf tijd en ruimte na het bezoek.
-        Audiogidsen beschikbaar in het Nederlands/Engels. Entree: 200 yen.
-    - name: Atoombom Koepel (Genbaku Dome)
-      when: Dag 1 — naast het park
-      description: |
-        Het skeletachtige ijzeren koepeldak van het voormalige Industrieel Promotiegebouw,
-        achtergelaten zoals het stond na de bom, is een van de meest aangrijpende plekken
-        ter wereld. UNESCO Werelderfgoedsite.
-      tips: |
-        Vrij te bezichtigen van buiten.
-        De weerspiegeling in de rivier geeft een krachtige foto.
-    - name: Miyajima Island & Itsukushima Schrijn
-      when: Dag 1 — middag of Dag 2 ochtend
-      description: |
-        Neem de JR-veerboot (15 min, inbegrepen bij JR Pass) naar Miyajima Island.
-        De beroemde drijvende torii-poort van Itsukushima Schrijn is een van Japan's
-        "Drie Uitzichten." Bij hoogwater lijkt de poort op het water te drijven.
-        Herten lopen hier ook vrij. Wandel op Mt. Misen voor panoramisch uitzicht.
-      tips: |
-        Controleer getijden van tevoren — hoogwater is het fotogeniekst.
-        Het eiland is klein genoeg om te voet te verkennen.
-        Laatste boot terug is rond 22:00.
+
+dagplanning:
+  - titel: Hiroshima & Miyajima
+    content: |
+      Ochtend: Vredesgedenkteken Park — Genbaku Dome (UNESCO, achtergelaten zoals na de bom), Kindermonument met papieren kraanvogels, Vredesvlam. Vredesmuseum is essentieel, reken op 2 uur. Middag: JR-veerboot (15 min, inbegrepen JR Pass) naar Miyajima Island. Itsukushima Schrijn met drijvende torii-poort — bij hoogwater lijkt de poort op het water te drijven. Vrije herten lopen ook op het eiland. Avond Okonomi-mura voor Hiroshima-stijl okonomiyaki.

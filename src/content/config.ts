@@ -15,12 +15,20 @@ const destinations = defineCollection({
     travel: z.object({
       from: z.string(),
       method: z.string(),
-      details: z.string(),
+      tijden: z.string().optional(),
+      vluchtnummer: z.string().optional(),
+      treinnummer: z.string().optional(),
+      duur: z.string().optional(),
+      klasse: z.string().optional(),
+      bagage: z.string().optional(),
     }),
     hotel: z.object({
       name: z.string(),
-      address: z.string(),
-      notes: z.string().optional(),
+      url: z.string().optional(),
+      checkIn: z.string().optional(),
+      checkOut: z.string().optional(),
+      breakfast: z.string().optional(),
+      payment: z.string().optional(),
     }),
     restaurants: z.array(
       z.object({
@@ -32,15 +40,13 @@ const destinations = defineCollection({
     ).optional(),
     activities: z.object({
       brief: z.array(z.string()),
-      detailed: z.array(
-        z.object({
-          name: z.string(),
-          when: z.string(),
-          description: z.string(),
-          tips: z.string().optional(),
-        })
-      ),
     }),
+    dagplanning: z.array(
+      z.object({
+        titel: z.string(),
+        content: z.string(),
+      })
+    ).optional(),
   }),
 });
 

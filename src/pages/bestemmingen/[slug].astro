@@ -4,13 +4,22 @@ import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("destinations");
-  return entries.map((entry) => ({
-    params: { slug: entry.data.slug },
-    props: { dest: entry.data },
-  }));
+  const sorted = entries.map(e => e.data).sort(
+    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+  );
+  const tripStart = new Date(sorted[0].startDate).getTime();
+
+  return entries.map((entry) => {
+    const destStart = new Date(entry.data.startDate).getTime();
+    const dayOffset = Math.round((destStart - tripStart) / 86400000);
+    return {
+      params: { slug: entry.data.slug },
+      props: { dest: entry.data, dayOffset },
+    };
+  });
 }
 
-const { dest } = Astro.props;
+const { dest, dayOffset } = Astro.props;
 
 function fmtDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("nl-NL", {
@@ -55,8 +64,12 @@ function nights(start: string, end: string) {
             <dd>{dest.travel.from}</dd>
             <dt>Vervoer</dt>
             <dd>{dest.travel.method}</dd>
-            <dt>Details</dt>
-            <dd>{dest.travel.details}</dd>
+            {dest.travel.tijden && <><dt>Tijden</dt><dd>{dest.travel.tijden}</dd></>}
+            {dest.travel.vluchtnummer && <><dt>Vluchtnummer</dt><dd>{dest.travel.vluchtnummer}</dd></>}
+            {dest.travel.treinnummer && <><dt>Treinnummer</dt><dd>{dest.travel.treinnummer}</dd></>}
+            {dest.travel.duur && <><dt>Duur</dt><dd>{dest.travel.duur}</dd></>}
+            {dest.travel.klasse && <><dt>Klasse</dt><dd>{dest.travel.klasse}</dd></>}
+            {dest.travel.bagage && <><dt>Bagage</dt><dd>{dest.travel.bagage}</dd></>}
           </dl>
         </section>
 
@@ -67,48 +80,38 @@ function nights(start: string, end: string) {
           </h2>
           <dl>
             <dt>Hotel</dt>
-            <dd>{dest.hotel.name}</dd>
-            <dt>Adres</dt>
-            <dd>{dest.hotel.address}</dd>
-            {
-              dest.hotel.notes && (
-                <>
-                  <dt>Notities</dt>
-                  <dd>{dest.hotel.notes}</dd>
-                </>
-              )
-            }
+            <dd>
+              {dest.hotel.url
+                ? <a href={dest.hotel.url} target="_blank" class="hotel-link">{dest.hotel.name}</a>
+                : dest.hotel.name}
+            </dd>
+            {dest.hotel.checkIn && <><dt>Incheck</dt><dd>{dest.hotel.checkIn}</dd></>}
+            {dest.hotel.checkOut && <><dt>Uitcheck</dt><dd>{dest.hotel.checkOut}</dd></>}
+            {dest.hotel.breakfast && <><dt>Ontbijt</dt><dd>{dest.hotel.breakfast}</dd></>}
+            {dest.hotel.payment && <><dt>Betaling</dt><dd>{dest.hotel.payment}</dd></>}
           </dl>
         </section>
       </div>
 
-      <!-- Activities -->
-      <section class="activities-section">
-        <h2>
-          Activiteiten
-        </h2>
-
-        <div class="activity-list">
-          {
-            [...dest.activities.detailed].sort((a: any, b: any) => {
-              const dayNum = (when: string) => parseInt(when.match(/\d+/)?.[0] ?? "0");
-              return dayNum(a.when) - dayNum(b.when);
-            }).map((act: any) => (
+      <!-- Dag planning -->
+      {dest.dagplanning && dest.dagplanning.length > 0 && (
+        <section class="activities-section">
+          <h2>Dag planning</h2>
+          <div class="activity-list">
+            {dest.dagplanning.map((dag, i) => (
               <article class="activity-card" style={`--dest-color: ${dest.color}`}>
                 <div class="activity-when">
-                  {act.when.split("—").map((part: string, i: number) => (
-                    <span class={i === 0 ? "when-day" : "when-period"}>{part.trim()}</span>
-                  ))}
+                  <span class="when-day">Dag {dayOffset + i + 1}</span>
+                  <span class="when-period">{dag.titel}</span>
                 </div>
                 <div class="activity-body">
-                  <h3 class="activity-title">{act.name}</h3>
-                  <p class="activity-desc">{act.description}</p>
+                  <p class="activity-desc">{dag.content}</p>
                 </div>
               </article>
-            ))
-          }
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {dest.restaurants && dest.restaurants.length > 0 && (
         <section class="restaurants-section">
@@ -133,6 +136,12 @@ function nights(start: string, end: string) {
 <style>
   .dest-page {
     padding: 40px 0 80px;
+  }
+
+  .hotel-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .back-link {
