@@ -103,14 +103,16 @@ function fmtShort(dateStr: string) {
     <div class="cal-layout">
       <!-- Calendars -->
       <div class="cal-months">
+        <div class="cal-grid">
+          {weekdays.map((d) => (
+            <div class="cal-weekday">{d}</div>
+          ))}
+        </div>
         {
           months.map((month) => (
             <div class="cal-month">
               <h2 class="month-name">{month.name}</h2>
               <div class="cal-grid">
-                {weekdays.map((d) => (
-                  <div class="cal-weekday">{d}</div>
-                ))}
                 {month.days.map((day) => {
                   if (!day.date || !day.inTrip) return <div class="cal-day cal-day--empty" />;
                   return (
@@ -275,19 +277,26 @@ function fmtShort(dateStr: string) {
   }
 
   .cal-months {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .cal-month {}
+  /* Shared weekday header sits above both month grids */
+  .cal-months > .cal-grid {
+    margin-bottom: 4px;
+  }
+
+  .cal-month {
+    margin-bottom: 24px;
+  }
 
   .month-name {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 6px;
     font-family: "Noto Sans JP", sans-serif;
     font-weight: 400;
   }
@@ -303,7 +312,7 @@ function fmtShort(dateStr: string) {
     font-size: 0.65rem;
     color: var(--text-muted);
     letter-spacing: 0.05em;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
     font-weight: 500;
   }
 
