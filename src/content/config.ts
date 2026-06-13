@@ -11,7 +11,6 @@ const destinations = defineCollection({
     slug: z.string(),
     startDate: dateStr,
     endDate: dateStr,
-    color: z.string(),
     travel: z.object({
       from: z.string(),
       method: z.string(),

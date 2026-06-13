@@ -24,8 +24,6 @@ collections:
       - { label: Slug (URL), name: slug, widget: string }
       - { label: Startdatum, name: startDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false }
       - { label: Einddatum, name: endDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false }
-      - { label: Kleur (tijdlijn), name: color, widget: color }
-
       - label: Reizen
         name: travel
         widget: object

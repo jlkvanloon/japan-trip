@@ -42,7 +42,7 @@ function nights(start: string, end: string) {
       <a href="/" class="back-link">&larr; Terug naar overzicht</a>
 
       <div class="dest-hero">
-        <div class="dest-accent" style={`background: ${dest.color}`}></div>
+        <div class="dest-accent" style={`background: var(--accent)`}></div>
         <div class="dest-hero-content">
           <h1>{dest.name}</h1>
           <p class="dest-period">
@@ -99,7 +99,7 @@ function nights(start: string, end: string) {
           <h2>Dag planning</h2>
           <div class="activity-list">
             {dest.dagplanning.map((dag, i) => (
-              <article class="activity-card" style={`--dest-color: ${dest.color}`}>
+              <article class="activity-card" style={`--dest-color: var(--accent)`}>
                 <div class="activity-when">
                   <span class="when-day">Dag {dayOffset + i + 1}</span>
                   <span class="when-period">{dag.titel}</span>
@@ -129,7 +129,7 @@ function nights(start: string, end: string) {
           <h2>Restaurants</h2>
           <div class="restaurant-list">
             {dest.restaurants.map((r: any) => (
-              <div class="restaurant-card" style={`--dest-color: ${dest.color}`}>
+              <div class="restaurant-card" style={`--dest-color: var(--accent)`}>
                 <div class="restaurant-header">
                   <strong class="restaurant-name">{r.name}</strong>
                   <span class="restaurant-type">{r.type}</span>

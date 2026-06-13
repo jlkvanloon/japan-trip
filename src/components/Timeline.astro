@@ -4,11 +4,12 @@ interface Destination {
   name: string;
   startDate: string;
   endDate: string;
-  color: string;
   travel: { from: string; method: string };
   hotel: { name: string; url?: string };
   activities: { brief: string[]; detailed: any[] };
 }
+
+const PALETTE = ["#D36951", "#A93C3C", "#87846E", "#773736"];
 
 interface Props {
   destinations: Destination[];
@@ -79,13 +80,14 @@ while (cursor < tripEnd) {
       <!-- The bar -->
       <div class="timeline-bar">
         {
-          sorted.map((dest) => {
+          sorted.map((dest, i) => {
             const left = pct(dest.startDate);
             const width = pct(dest.endDate) - left;
+            const color = PALETTE[i % PALETTE.length];
             return (
               <button
                 class="segment"
-                style={`left: ${left}%; width: ${width}%; background: ${dest.color};`}
+                style={`left: ${left}%; width: ${width}%; background: ${color};`}
                 data-slug={dest.slug}
                 aria-label={`${dest.name} — ${fmtDate(dest.startDate)} t/m ${fmtDate(dest.endDate)}`}
               >
@@ -109,9 +111,9 @@ while (cursor < tripEnd) {
     <!-- Destination cards (mobile fallback + always-visible on small screens) -->
     <div class="dest-cards">
       {
-        sorted.map((dest) => (
+        sorted.map((dest, i) => (
           <button class="dest-card" data-slug={dest.slug}>
-            <span class="card-dot" style={`background: ${dest.color}`} />
+            <span class="card-dot" style={`background: ${PALETTE[i % PALETTE.length]}`} />
             <div class="card-info">
               <strong>{dest.name}</strong>
               <span>
