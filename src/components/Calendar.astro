@@ -162,7 +162,7 @@ function fmtShort(dateStr: string) {
                   const prev = day.dest ? prevDestColor.get(day.dest.slug) : null;
                   const isTravel = day.isFirst && !!prev;
                   const cellStyle = isTravel
-                    ? `background: linear-gradient(135deg, color-mix(in srgb, ${prev} 40%, white) 50%, color-mix(in srgb, ${color} 40%, white) 50%); --dest-color: ${color}`
+                    ? `background: linear-gradient(to right, color-mix(in srgb, ${prev} 40%, white) 50%, color-mix(in srgb, ${color} 40%, white) 50%); --dest-color: ${color}`
                     : color ? `--dest-color: ${color}` : "";
                   return (
                     <button
