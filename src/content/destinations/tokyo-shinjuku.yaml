@@ -1,58 +1,59 @@
 name: Tokyo (Shinjuku)
 slug: tokyo-shinjuku
-startDate: "2026-11-19"
-endDate: "2026-11-23"
-
+startDate: 2026-11-19
+endDate: 2026-11-23
 travel:
   from: Amsterdam (AMS)
   method: Vliegtuig
-  tijden: "14:20 AMS → 11:45+1 NRT"
+  tijden: 14:20 AMS - 11:45+1 NRT
   vluchtnummer: KL861
   duur: 13u25
   klasse: Premium Comfort
-
+  bagage: 2x handbagage, 2x kleine tas, 1x ruimbagage (23kg)
 hotel:
   name: Hotel Sunroute Plaza Shinjuku
-  url: "https://www.booking.com/hotel/jp/sunroute-plaza-shinjuku.nl.html"
-  checkIn: "vanaf 15:00"
-  checkOut: "voor 11:00"
+  url: https://www.booking.com/hotel/jp/sunroute-plaza-shinjuku.nl.html
+  checkIn: vanaf 15:00
+  checkOut: tot 11:00
   breakfast: Inbegrepen
-  payment: "€235 — betaald 16 november"
-
+  payment: €235 betalen op 16 november
 restaurants:
-  - name: Ichiran Ramen Shinjuku
+  - name: Ichiran Ramen
     type: Ramen
-    notes: Solo-eetcabines, intense tonkotsu bouillon. Open 24/7.
+    notes: Een bekende ramen keten met solo-eetcabines
   - name: Omoide Yokocho
     type: Yakitori
     notes: Smal steegje vol rokerige yakitori-kraampjes. Ga na 19:00.
-  - name: Tsunahachi Shinjuku
-    type: Tempura
-    notes: Klassieke tempura-eetzaak opgericht in 1923. Betaalbaar lunchmenu.
-  - name: Niku no Mansei
-    type: Sukiyaki / Shabu-shabu
-    notes: Kwaliteitsvlees in een rustige omgeving vlak bij Shinjuku.
-
 activities:
   brief:
     - Shibuya Crossing & Shibuya Sky
     - Meiji Shrine & Harajuku
     - Dagtocht naar Mount Fuji (Kawaguchiko)
     - Shinjuku Gyoen & Omoide Yokocho
-
 dagplanning:
   - titel: Aankomst & Shibuya
     subsections:
       - titel: Aankomst & Transfer
-        beschrijving: Aankomst op Narita na lange vlucht. Narita Express naar Shinjuku (~80 min), inchecken hotel. Even bijkomen en de buurt verkennen.
+        beschrijving: Aankomst op Narita na lange vlucht. Narita Express naar Shinjuku
+          (~80 min), inchecken hotel. Even bijkomen en de buurt verkennen.
       - titel: Avond — Shibuya Crossing & Shibuya Sky
-        beschrijving: Shibuya Crossing — de beroemdste kruising ter wereld, indrukwekkend tijdens de avondspits. Daarna omhoog naar Shibuya Sky observatiedek voor panorama over de stad bij nacht. Kaartjes vooraf boeken.
+        beschrijving: Shibuya Crossing — de beroemdste kruising ter wereld,
+          indrukwekkend tijdens de avondspits. Daarna omhoog naar Shibuya Sky
+          observatiedek voor panorama over de stad bij nacht. Kaartjes vooraf
+          boeken.
   - titel: Meiji Shrine & Harajuku
-    content: |
-      Begin vroeg bij Meiji Jingu, een serene shinto-schrijn in een bebost park. Loop daarna door Takeshita Street voor excentrieke mode en crepes, eindig op het chique Omotesando-boulevard.
+    content: >
+      Begin vroeg bij Meiji Jingu, een serene shinto-schrijn in een bebost park.
+      Loop daarna door Takeshita Street voor excentrieke mode en crepes, eindig
+      op het chique Omotesando-boulevard.
   - titel: Dagtocht Mount Fuji
-    content: |
-      Fuji Excursion trein of Keio-bus vanuit Shinjuku naar Kawaguchiko (~2 uur). Prachtige reflecties van de Fuji in het meer. Chureito Pagode-uitzichtpunt is onmisbaar. Ochtenduitzichten zijn het best — wolken trekken vaak op na de middag.
+    content: >
+      Fuji Excursion trein of Keio-bus vanuit Shinjuku naar Kawaguchiko (~2
+      uur). Prachtige reflecties van de Fuji in het meer. Chureito
+      Pagode-uitzichtpunt is onmisbaar. Ochtenduitzichten zijn het best — wolken
+      trekken vaak op na de middag.
   - titel: Shinjuku Gyoen & Omoide Yokocho
-    content: |
-      Shinjuku Gyoen voor herfstbladeren in de middag. 's Avonds Omoide Yokocho ("Herinneringssteeg") — smal steegje vol rokerige yakitori-stalletjes. Aankomstdag Joa & Sas.
+    content: >
+      Shinjuku Gyoen voor herfstbladeren in de middag. 's Avonds Omoide Yokocho
+      ("Herinneringssteeg") — smal steegje vol rokerige yakitori-stalletjes.
+      Aankomstdag Joa & Sas.
