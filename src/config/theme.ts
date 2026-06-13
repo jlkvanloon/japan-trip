@@ -1,12 +1,12 @@
+// Palette: Sumi-e (墨絵) — ink wash painting, washi paper
 export const theme = {
-  bg:          "#F8DFB3",
+  bg:          "#f5f0e8",
   surface:     "#ffffff",
-  text:        "#2a1514",
-  textMuted:   "#87846E",
-  border:      "#e4c99a",
-  accent:      "#D36951",
-  accentDark:  "#A93C3C",
+  text:        "#1a1510",
+  textMuted:   "#7a7060",
+  border:      "#ddd5c0",
+  accent:      "#c03028",
+  accentDark:  "#8a1e18",
 
-  // Cycled across destinations on the calendar & timeline (no per-dest config needed)
-  palette: ["#D36951", "#A93C3C", "#87846E", "#773736"],
+  palette: ["#c03028", "#2e5c8a", "#5a8a4a", "#8a6020"],
 };
