@@ -20,16 +20,23 @@ const sorted = [...destinations].sort(
   (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
 );
 
-const tripStart = new Date(sorted[0].startDate);
-const tripEnd = new Date(sorted[sorted.length - 1].endDate);
-
+// Use local-time date strings to avoid UTC off-by-one errors
 function toDateStr(d: Date): string {
-  return d.toISOString().split("T")[0];
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 }
 
-// Last calendar day that is part of the trip (endDate is exclusive checkout day)
-const tripStartStr = toDateStr(tripStart);
-const tripEndStr = toDateStr(new Date(tripEnd.getTime() - 86400000));
+// Parse YYYY-MM-DD strings as local dates (not UTC midnight)
+function parseDate(s: string): Date {
+  const [y, m, d] = s.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+// Trip range: first startDate to last endDate (endDate is the departure/checkout day, show it greyed)
+const tripStartStr = sorted[0].startDate;
+const tripEndStr = sorted[sorted.length - 1].endDate;
 
 function getDestForDate(dateStr: string): Destination | null {
   return sorted.find((d) => dateStr >= d.startDate && dateStr < d.endDate) ?? null;
@@ -49,21 +56,24 @@ function buildMonth(year: number, month: number) {
   const firstOfMonth = new Date(year, month, 1);
   const lastOfMonth = new Date(year, month + 1, 0);
 
-  // Clip grid to only the weeks that contain trip days
   const monthStartStr = toDateStr(firstOfMonth);
   const monthEndStr = toDateStr(lastOfMonth);
+
+  // Clip to the trip days that fall within this month
   const clipStartStr = tripStartStr > monthStartStr ? tripStartStr : monthStartStr;
   const clipEndStr = tripEndStr < monthEndStr ? tripEndStr : monthEndStr;
-  const clipStart = new Date(clipStartStr);
-  const clipEnd = new Date(clipEndStr);
+  const clipStart = parseDate(clipStartStr);
+  const clipEnd = parseDate(clipEndStr);
 
-  // Monday of the week containing the first trip day in this month
+  // Monday of week containing first trip day in this month
   const startDow = (clipStart.getDay() + 6) % 7;
-  const gridStart = new Date(clipStart.getTime() - startDow * 86400000);
+  const gridStart = new Date(clipStart);
+  gridStart.setDate(gridStart.getDate() - startDow);
 
-  // Sunday of the week containing the last trip day in this month
+  // Sunday of week containing last trip day in this month
   const endDow = (clipEnd.getDay() + 6) % 7;
-  const gridEnd = new Date(clipEnd.getTime() + (6 - endDow) * 86400000);
+  const gridEnd = new Date(clipEnd);
+  gridEnd.setDate(gridEnd.getDate() + (6 - endDow));
 
   const days: CalDay[] = [];
   const cursor = new Date(gridStart);
@@ -71,7 +81,7 @@ function buildMonth(year: number, month: number) {
     const dateStr = toDateStr(cursor);
     const inMonth = cursor.getMonth() === month;
     const dest = inMonth ? getDestForDate(dateStr) : null;
-    const nextDay = toDateStr(new Date(cursor.getTime() + 86400000));
+    const nextDay = toDateStr(new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate() + 1));
     const inTrip = inMonth && dateStr >= tripStartStr && dateStr <= tripEndStr;
     days.push({
       date: inMonth ? new Date(cursor) : null,
@@ -107,14 +117,6 @@ function fmtShort(dateStr: string) {
 
 <section class="cal-section">
   <div class="container">
-    <div class="trip-header">
-      <h1>Japan 2026</h1>
-      <p class="trip-dates">
-        {fmtShort(sorted[0].startDate)} &ndash; {fmtShort(tripEnd.toISOString())}
-        &nbsp;&middot;&nbsp;
-        {Math.round((tripEnd.getTime() - tripStart.getTime()) / 86400000)} dagen
-      </p>
-    </div>
 
     <div class="cal-layout">
       <!-- Calendars -->
@@ -130,7 +132,7 @@ function fmtShort(dateStr: string) {
               <h2 class="month-name">{month.name}</h2>
               <div class="cal-grid">
                 {month.days.map((day) => {
-                  if (!day.date || !day.inTrip) return <div class="cal-day cal-day--empty" />;
+                  if (!day.date) return <div class="cal-day cal-day--empty" />;
                   return (
                     <button
                       class:list={[
