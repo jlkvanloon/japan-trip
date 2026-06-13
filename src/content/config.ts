@@ -1,12 +1,16 @@
 import { defineCollection, z } from "astro:content";
 
+const dateStr = z
+  .union([z.string(), z.date()])
+  .transform((v) => (v instanceof Date ? v.toISOString().split("T")[0] : v));
+
 const destinations = defineCollection({
   type: "data",
   schema: z.object({
     name: z.string(),
     slug: z.string(),
-    startDate: z.string(),
-    endDate: z.string(),
+    startDate: dateStr,
+    endDate: dateStr,
     color: z.string(),
     travel: z.object({
       from: z.string(),

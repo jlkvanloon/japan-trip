@@ -46,30 +46,46 @@ type CalDay = {
 };
 
 function buildMonth(year: number, month: number) {
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  const startOffset = (firstDay.getDay() + 6) % 7; // Mon=0
+  const firstOfMonth = new Date(year, month, 1);
+  const lastOfMonth = new Date(year, month + 1, 0);
+
+  // Clip grid to only the weeks that contain trip days
+  const monthStartStr = toDateStr(firstOfMonth);
+  const monthEndStr = toDateStr(lastOfMonth);
+  const clipStartStr = tripStartStr > monthStartStr ? tripStartStr : monthStartStr;
+  const clipEndStr = tripEndStr < monthEndStr ? tripEndStr : monthEndStr;
+  const clipStart = new Date(clipStartStr);
+  const clipEnd = new Date(clipEndStr);
+
+  // Monday of the week containing the first trip day in this month
+  const startDow = (clipStart.getDay() + 6) % 7;
+  const gridStart = new Date(clipStart.getTime() - startDow * 86400000);
+
+  // Sunday of the week containing the last trip day in this month
+  const endDow = (clipEnd.getDay() + 6) % 7;
+  const gridEnd = new Date(clipEnd.getTime() + (6 - endDow) * 86400000);
+
   const days: CalDay[] = [];
-  for (let i = 0; i < startOffset; i++) {
-    days.push({ date: null, dateStr: null, dest: null, inTrip: false, isFirst: false, isLast: false, nextDay: "" });
-  }
-  for (let d = 1; d <= lastDay.getDate(); d++) {
-    const date = new Date(year, month, d);
-    const dateStr = toDateStr(date);
-    const dest = getDestForDate(dateStr);
-    const nextDay = toDateStr(new Date(date.getTime() + 86400000));
-    const inTrip = dateStr >= tripStartStr && dateStr <= tripEndStr;
+  const cursor = new Date(gridStart);
+  while (cursor <= gridEnd) {
+    const dateStr = toDateStr(cursor);
+    const inMonth = cursor.getMonth() === month;
+    const dest = inMonth ? getDestForDate(dateStr) : null;
+    const nextDay = toDateStr(new Date(cursor.getTime() + 86400000));
+    const inTrip = inMonth && dateStr >= tripStartStr && dateStr <= tripEndStr;
     days.push({
-      date,
-      dateStr,
+      date: inMonth ? new Date(cursor) : null,
+      dateStr: inMonth ? dateStr : null,
       dest,
       inTrip,
       isFirst: !!(dest && dateStr === dest.startDate),
       isLast: !!(dest && nextDay === dest.endDate),
       nextDay,
     });
+    cursor.setDate(cursor.getDate() + 1);
   }
-  return { name: firstDay.toLocaleDateString("nl-NL", { month: "long", year: "numeric" }), days };
+
+  return { name: firstOfMonth.toLocaleDateString("nl-NL", { month: "long", year: "numeric" }), days };
 }
 
 const months = [
@@ -341,7 +357,8 @@ function fmtShort(dateStr: string) {
   }
 
   .cal-day--off .day-num {
-    display: none;
+    color: var(--text-muted);
+    opacity: 0.35;
   }
 
   .cal-day--trip {
