@@ -1,40 +1,42 @@
 name: Hakone
 slug: hakone
-startDate: "2026-11-23"
-endDate: "2026-11-24"
-
+startDate: 2026-11-23
+endDate: 2026-11-24
 travel:
   from: Tokyo (Shinjuku)
-  method: Trein (Hakone Freepass)
-  duur: "~90 min"
-
+  method: Trein (Inbegrepen bij Hakone Freepass)
+  duur: ~90 min
 hotel:
   name: Mount View Hakone
-  url: ""
-  checkIn: "15:00 – 19:00"
-  checkOut: "07:30 – 10:00"
-  breakfast: "Ontbijt & diner inbegrepen"
-  payment: "€232 — betaald 19 november"
-
+  url: https://www.booking.com/hotel/jp/mount-view-hakone.nl.html?aid=311093&label=mount-view-hakone-e9lqfJvSYHLamAMME5NNhwS533266106127%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atiaud-2395719376965%3Akwd-27272954381%3Alp9189936%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YbC4OlOULAnvOyNIrZY2zYk&sid=9c6dbf558431bf9840bc309fa116e66d&all_sr_blocks=55013201_377088002_2_17_0_4289&checkin=2026-10-10&checkout=2026-10-11&dest_id=-228233&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=55013201_377088002_2_17_0_4289&hpos=1&matching_block_id=55013201_377088002_2_17_0_4289&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=55013201_377088002_2_17_0_4289_5373000&srepoch=1781378475&srpvid=790e88130a1c04c6&type=total&ucfs=1&
+  checkIn: 15:00 – 19:00
+  checkOut: 07:30 – 10:00
+  breakfast: Ontbijt & diner inbegrepen
+  payment: €232 betalen op 19 november
 restaurants:
   - name: Mount View Hakone (diner)
     type: Kaiseki
     notes: Inbegrepen bij het verblijf. Traditioneel meergangenmenu op de kamer.
-  - name: Amazake Chaya
+  - name: Amazake Tea House
     type: Theehuis
     notes: 400 jaar oud theehuis. Zoete amazake rijstdrank en mochi. Alleen lunch.
   - name: Hakone Beer
     type: Bier & snacks
     notes: Klein brouwerij-restaurant in Hakone-Yumoto met lokale craft bieren.
-
 activities:
   brief:
     - Hakone Loop per bus, kabelbaan & piratenschip
     - Hakone Shrine met torii-poort in het meer
     - Owakudani vulkanisch dal & zwarte eieren
-    - Prive onsen & ryokan-diner
-
+    - Onsen & ryokan-diner
 dagplanning:
   - titel: Hakone Loop & Onsen
-    content: |
-      Trein vanuit Shinjuku naar Hakone-Yumoto. K-bus naar Amazake Chaya (400 jaar oud theehuis, zoete amazake rijstdrank). Verder naar Moto-Hakone en Hakone Shrine — rode torii-poort in het Ashi-meer met bergzicht. Piratenschip naar Togendai, dan Hakone Ropeway naar Owakudani: actief vulkanisch gebied met zwaveldampen, probeer kuro-tamago (zwart gekookte eieren). Aankomst Mount View Hakone voor traditioneel kaiseki-diner en prive buiten-onsen.
+    content: >
+      Trein vanuit Shinjuku naar Hakone-Yumoto waar we de luggage service
+      gebruiken om onze koffers alvast naar het hotel te laten bregen. K-bus
+      naar Amazake Chaya (400 jaar oud theehuis, zoete amazake rijstdrank).
+      Verder met de K-bus naar Moto-Hakone en Hakone Shrine — rode torii-poort
+      in het Ashi-meer met bergzicht. Piratenschip naar Togendai, dan Hakone
+      Ropeway naar Owakudani: actief vulkanisch gebied met zwaveldampen, probeer
+      kuro-tamago (zwart gekookte eieren). Aankomst Mount View Hakone voor
+      traditioneel kaiseki-diner en prive buiten-onsen.
