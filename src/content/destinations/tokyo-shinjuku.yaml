@@ -2,21 +2,16 @@ name: Tokyo (Shinjuku)
 slug: tokyo-shinjuku
 startDate: 2026-11-19
 endDate: 2026-11-23
-todos:
-  - Shibuya Sky tickets vooraf boeken
-  - IC-kaart opladen bij aankomst Narita
-  - Kawaguchiko bus reserveren voor Mount Fuji dag
-  - Yen pinnen bij 7-Eleven ATM
 travel:
-  - titel: Vlucht naar Tokyo
+  - titel: Vlucht Mick & Eva
     from: Amsterdam (AMS)
     method: Vliegtuig
     tijden: 14:20 AMS - 11:45+1 NRT
     vluchtnummer: KL861
     duur: 13u25
-    klasse: Premium Comfort
+    klasse: ""
     bagage: 2x handbagage, 2x kleine tas, 1x ruimbagage (23kg)
-  - titel: Vlucht terug naar Amsterdam
+  - titel: Vlucht Joa en Sas
     from: Tokyo (NRT)
     method: Vliegtuig
     tijden: 13:45 NRT → 17:25 AMS
@@ -44,6 +39,11 @@ activities:
     - Meiji Shrine & Harajuku
     - Dagtocht naar Mount Fuji (Kawaguchiko)
     - Shinjuku Gyoen & Omoide Yokocho
+todos:
+  - Shibuya Sky tickets vooraf boeken
+  - IC-kaart opladen bij aankomst Narita
+  - Kawaguchiko bus reserveren voor Mount Fuji dag
+  - Yen pinnen bij 7-Eleven ATM
 dagplanning:
   - titel: Aankomst & Shibuya
     subsections:
