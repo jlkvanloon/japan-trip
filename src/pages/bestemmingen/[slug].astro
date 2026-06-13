@@ -139,6 +139,16 @@ function nights(start: string, end: string) {
           </div>
         </section>
       )}
+      {dest.todos && dest.todos.length > 0 && (
+        <section class="todos-section">
+          <h2>To-do</h2>
+          <ul class="todo-list">
+            {dest.todos.map((todo: string) => (
+              <li class="todo-item">{todo}</li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   </div>
 </Layout>
@@ -381,6 +391,47 @@ function nights(start: string, end: string) {
     letter-spacing: 0.06em;
     color: var(--dest-color, var(--accent));
     white-space: nowrap;
+  }
+
+  .todos-section {
+    margin-top: 48px;
+  }
+
+  .todos-section h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .todo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text);
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .todo-item::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
   }
 
   .restaurant-notes {

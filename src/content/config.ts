@@ -42,6 +42,7 @@ const destinations = defineCollection({
     activities: z.object({
       brief: z.array(z.string()).optional(),
     }).optional(),
+    todos: z.array(z.string()).optional(),
     dagplanning: z.array(
       z.object({
         titel: z.string(),

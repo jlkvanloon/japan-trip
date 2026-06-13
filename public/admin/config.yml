@@ -70,6 +70,12 @@ collections:
             required: false
             field: { label: Activiteit, name: item, widget: string }
 
+      - label: To-do lijst
+        name: todos
+        widget: list
+        required: false
+        field: { label: To-do, name: item, widget: string }
+
       - label: Dag planning
         name: dagplanning
         widget: list
