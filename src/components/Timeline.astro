@@ -12,6 +12,13 @@ interface Destination {
 }
 
 const PALETTE = theme.palette;
+const colorIndexMap = new Map<string, number>();
+let _ci = 0;
+for (const d of sorted) {
+  const group = d.slug.startsWith('tokyo-') ? 'tokyo' : d.slug;
+  if (!colorIndexMap.has(group)) colorIndexMap.set(group, _ci++);
+  colorIndexMap.set(d.slug, colorIndexMap.get(group)!);
+}
 
 interface Props {
   destinations: Destination[];
@@ -82,10 +89,10 @@ while (cursor < tripEnd) {
       <!-- The bar -->
       <div class="timeline-bar">
         {
-          sorted.map((dest, i) => {
+          sorted.map((dest) => {
             const left = pct(dest.startDate);
             const width = pct(dest.endDate) - left;
-            const color = PALETTE[i % PALETTE.length];
+            const color = PALETTE[colorIndexMap.get(dest.slug)! % PALETTE.length];
             return (
               <button
                 class="segment"
@@ -113,9 +120,9 @@ while (cursor < tripEnd) {
     <!-- Destination cards (mobile fallback + always-visible on small screens) -->
     <div class="dest-cards">
       {
-        sorted.map((dest, i) => (
+        sorted.map((dest) => (
           <button class="dest-card" data-slug={dest.slug}>
-            <span class="card-dot" style={`background: ${PALETTE[i % PALETTE.length]}`} />
+            <span class="card-dot" style={`background: ${PALETTE[colorIndexMap.get(dest.slug)! % PALETTE.length]}`} />
             <div class="card-info">
               <strong>{dest.name}</strong>
               <span>

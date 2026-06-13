@@ -28,9 +28,17 @@ const COORDS: Record<string, [number, number]> = {
   "tokyo-asakusa":  [35.7119, 139.7961],
 };
 
+const colorIndexMap = new Map<string, number>();
+let _ci = 0;
+for (const d of sorted) {
+  const group = d.slug.startsWith('tokyo-') ? 'tokyo' : d.slug;
+  if (!colorIndexMap.has(group)) colorIndexMap.set(group, _ci++);
+  colorIndexMap.set(d.slug, colorIndexMap.get(group)!);
+}
+
 const mapData = sorted
   .filter((d) => COORDS[d.slug])
-  .map((d, i) => ({ slug: d.slug, name: d.name, color: theme.palette[i % theme.palette.length], coords: COORDS[d.slug] }));
+  .map((d) => ({ slug: d.slug, name: d.name, color: theme.palette[colorIndexMap.get(d.slug)! % theme.palette.length], coords: COORDS[d.slug] }));
 ---
 
 <section class="map-section">

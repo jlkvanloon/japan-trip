@@ -40,8 +40,15 @@ function parseDate(s: string): Date {
 const tripStartStr = sorted[0].startDate;
 const tripEndStr = sorted[sorted.length - 1].endDate;
 
-const destColor = new Map(sorted.map((d, i) => [d.slug, PALETTE[i % PALETTE.length]]));
-const prevDestColor = new Map(sorted.map((d, i) => [d.slug, i > 0 ? PALETTE[(i - 1) % PALETTE.length] : null]));
+const colorIndexMap = new Map<string, number>();
+let _ci = 0;
+for (const d of sorted) {
+  const group = d.slug.startsWith('tokyo-') ? 'tokyo' : d.slug;
+  if (!colorIndexMap.has(group)) colorIndexMap.set(group, _ci++);
+  colorIndexMap.set(d.slug, colorIndexMap.get(group)!);
+}
+const destColor = new Map(sorted.map(d => [d.slug, PALETTE[colorIndexMap.get(d.slug)! % PALETTE.length]]));
+const prevDestColor = new Map(sorted.map((d, i) => [d.slug, i > 0 ? PALETTE[colorIndexMap.get(sorted[i - 1].slug)! % PALETTE.length] : null]));
 
 const MONTH_SHORT: Record<number, string> = {
   10: "nov", 11: "dec",
