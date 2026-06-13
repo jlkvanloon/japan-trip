@@ -150,7 +150,7 @@ function fmtShort(dateStr: string) {
               {/* Day cells */}
               <div class="cal-grid day-row">
                 {week.map((day) => {
-                  if (!day || !day.inTrip) return <div class="cal-day cal-day--empty" />;
+                  if (!day) return <div class="cal-day cal-day--empty" />;
                   return (
                     <button
                       class:list={["cal-day", day.dest ? "cal-day--trip" : "cal-day--off"]}
