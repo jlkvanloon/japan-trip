@@ -1,8 +1,9 @@
 ---
+import { theme } from '../config/theme';
+
 interface Destination {
   slug: string;
   name: string;
-  color: string;
   startDate: string;
   endDate: string;
 }
@@ -29,7 +30,7 @@ const COORDS: Record<string, [number, number]> = {
 
 const mapData = sorted
   .filter((d) => COORDS[d.slug])
-  .map((d) => ({ slug: d.slug, name: d.name, color: d.color, coords: COORDS[d.slug] }));
+  .map((d, i) => ({ slug: d.slug, name: d.name, color: theme.palette[i % theme.palette.length], coords: COORDS[d.slug] }));
 ---
 
 <section class="map-section">
