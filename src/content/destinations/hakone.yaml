@@ -32,11 +32,31 @@ activities:
 dagplanning:
   - titel: Hakone Loop & Onsen
     content: >
-      Trein vanuit Shinjuku naar Hakone-Yumoto waar we de luggage service
-      gebruiken om onze koffers alvast naar het hotel te laten bregen. K-bus
-      naar Amazake Chaya (400 jaar oud theehuis, zoete amazake rijstdrank).
-      Verder met de K-bus naar Moto-Hakone en Hakone Shrine — rode torii-poort
-      in het Ashi-meer met bergzicht. Piratenschip naar Togendai, dan Hakone
-      Ropeway naar Owakudani: actief vulkanisch gebied met zwaveldampen, probeer
-      kuro-tamago (zwart gekookte eieren). Aankomst Mount View Hakone voor
-      traditioneel kaiseki-diner en prive buiten-onsen.
+      We maken hier de typische hakone-loop langs vulkanisch landschap, lake
+      Ashi en een traditioneel theehuis.
+    subsections:
+      - titel: Hakone-Yumoto
+        beschrijving: "Trein vanuit Shinjuku naar Hakone-Yumoto waar we de luggage
+          service gebruiken om onze koffers alvast naar het hotel te laten
+          bregen. "
+      - titel: Amazake Tea House
+        beschrijving: "K-bus (~25 min) naar Amazake Tea House. Dit is een 400 jaar oud
+          theehuis met zoete amazake rijstdrank. "
+      - titel: Hakone Shrine
+        beschrijving: We pakken de K-bus (~5/10 min) verder naar Moto-Hakone waar we
+          10-15 minuten wandelen om bij de beroemde Hakone Shrine te komen met
+          zijn rode torii-poort in het water.
+      - titel: Togendai
+        beschrijving: We lopen weer terug naar Moto-Hakone waar we een piratenschip
+          pakken (~25 min) over Lake Ashi richting Togendai.
+      - titel: Owakudani
+        beschrijving: Vanaf Togendai pakken we de Hakone Ropeway (~15 min) en stappen we
+          halverwege uit. Je gaat over het actieve vulkanische dal en eindigt
+          bij zwavelbronnen met uitzicht over de Mount Fuji
+      - titel: Gora
+        beschrijving: Vanaf Owakudani pakken we de rest van de Hakone Ropeway van 10
+          minuten naar Souzan waarna we nog 10 minuten met de Cable Car naar
+          Gora gaan.
+      - titel: Mount View Hakone
+        beschrijving: Vanaf Gora pakken we de bus 20-25 minuten naar Mount View Hakone
+          voor de Onsen en ons traditionele kaiseki-diner.
