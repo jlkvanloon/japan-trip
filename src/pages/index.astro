@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import Calendar from "../components/Calendar.astro";
+import TripMap from "../components/TripMap.astro";
 
 const entries = await getCollection("destinations");
 const destinations = entries.map((e) => e.data);
@@ -9,4 +10,5 @@ const destinations = entries.map((e) => e.data);
 
 <Layout title="Japan 2026">
   <Calendar destinations={destinations} />
+  <TripMap destinations={destinations} />
 </Layout>

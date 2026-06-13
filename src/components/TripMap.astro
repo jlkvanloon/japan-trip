@@ -1,0 +1,150 @@
+---
+interface Destination {
+  slug: string;
+  name: string;
+  color: string;
+  startDate: string;
+  endDate: string;
+}
+
+interface Props {
+  destinations: Destination[];
+}
+
+const { destinations } = Astro.props;
+
+const sorted = [...destinations].sort(
+  (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+);
+
+// Coordinates per slug
+const COORDS: Record<string, [number, number]> = {
+  "tokyo-shinjuku": [35.6938, 139.7034],
+  "hakone":         [35.2340, 139.1073],
+  "kyoto":          [35.0116, 135.7681],
+  "hiroshima":      [34.3853, 132.4553],
+  "osaka":          [34.6937, 135.5023],
+  "tokyo-asakusa":  [35.7119, 139.7961],
+};
+
+const mapData = sorted
+  .filter((d) => COORDS[d.slug])
+  .map((d) => ({ slug: d.slug, name: d.name, color: d.color, coords: COORDS[d.slug] }));
+---
+
+<section class="map-section">
+  <div class="container">
+    <h2 class="map-title">Route</h2>
+    <div id="trip-map"></div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script is:inline id="map-data" type="application/json" set:html={JSON.stringify(mapData)} />
+
+<script is:inline>
+  (function () {
+    const data = JSON.parse(document.getElementById("map-data").textContent);
+
+    const map = L.map("trip-map", { zoomControl: true, scrollWheelZoom: false });
+
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: "abcd",
+      maxZoom: 14,
+    }).addTo(map);
+
+    // Route polyline
+    const latlngs = data.map(function (d) { return d.coords; });
+    L.polyline(latlngs, {
+      color: "#1a1a1a",
+      weight: 1.5,
+      opacity: 0.35,
+      dashArray: "6 6",
+    }).addTo(map);
+
+    // Markers
+    data.forEach(function (d, i) {
+      const isFirst = i === 0;
+      const isLast = i === data.length - 1;
+      const isSameAsPrev = i > 0 && data[i - 1].slug.startsWith("tokyo") && d.slug.startsWith("tokyo");
+
+      const icon = L.divIcon({
+        className: "",
+        html:
+          '<div style="' +
+          "width:14px;height:14px;border-radius:50%;" +
+          "background:" + d.color + ";" +
+          "border:2px solid #fff;" +
+          "box-shadow:0 1px 4px rgba(0,0,0,0.25);" +
+          '"></div>',
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      });
+
+      const marker = L.marker(d.coords, { icon }).addTo(map);
+
+      const offset = isSameAsPrev ? [12, 0] : [0, -14];
+      const label = L.tooltip({
+        permanent: true,
+        direction: isSameAsPrev ? "right" : "top",
+        className: "map-label",
+        offset: offset,
+      })
+        .setContent(d.name)
+        .setLatLng(d.coords);
+      map.addLayer(label);
+    });
+
+    // Fit map to route with padding
+    const bounds = L.latLngBounds(latlngs);
+    map.fitBounds(bounds, { padding: [48, 48] });
+  })();
+</script>
+
+<style>
+  .map-section {
+    padding: 48px 0 80px;
+  }
+
+  .map-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+  }
+
+  #trip-map {
+    height: 480px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+</style>
+
+<style is:global>
+  .map-label {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: "Shippori Mincho", serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    padding: 0 !important;
+  }
+
+  .map-label::before {
+    display: none !important;
+  }
+
+  .leaflet-attribution-flag {
+    display: none !important;
+  }
+</style>
