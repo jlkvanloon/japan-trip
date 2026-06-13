@@ -48,7 +48,7 @@ function nights(start: string, end: string) {
         <!-- Travel -->
         <section class="info-card">
           <h2 class="info-card-title">
-            <span class="info-icon">✈</span> Reizen
+            Reizen
           </h2>
           <dl>
             <dt>Vertrek vanuit</dt>
@@ -63,7 +63,7 @@ function nights(start: string, end: string) {
         <!-- Hotel -->
         <section class="info-card">
           <h2 class="info-card-title">
-            <span class="info-icon">🏨</span> Verblijf
+            Verblijf
           </h2>
           <dl>
             <dt>Hotel</dt>
@@ -85,29 +85,47 @@ function nights(start: string, end: string) {
       <!-- Activities -->
       <section class="activities-section">
         <h2>
-          <span class="info-icon">🗺</span> Activiteiten
+          Activiteiten
         </h2>
 
         <div class="activity-list">
           {
-            dest.activities.detailed.map((act: any) => (
-              <article class="activity-card">
-                <header class="activity-header">
-                  <h3>{act.name}</h3>
-                  <span class="activity-when">{act.when}</span>
-                </header>
-                <p class="activity-desc">{act.description}</p>
-                {act.tips && (
-                  <div class="activity-tips">
-                    <span class="tips-label">💡 Tip</span>
-                    {act.tips}
-                  </div>
-                )}
+            [...dest.activities.detailed].sort((a: any, b: any) => {
+              const dayNum = (when: string) => parseInt(when.match(/\d+/)?.[0] ?? "0");
+              return dayNum(a.when) - dayNum(b.when);
+            }).map((act: any) => (
+              <article class="activity-card" style={`--dest-color: ${dest.color}`}>
+                <div class="activity-when">
+                  {act.when.split("—").map((part: string, i: number) => (
+                    <span class={i === 0 ? "when-day" : "when-period"}>{part.trim()}</span>
+                  ))}
+                </div>
+                <div class="activity-body">
+                  <h3 class="activity-title">{act.name}</h3>
+                  <p class="activity-desc">{act.description}</p>
+                </div>
               </article>
             ))
           }
         </div>
       </section>
+
+      {dest.restaurants && dest.restaurants.length > 0 && (
+        <section class="restaurants-section">
+          <h2>Restaurants</h2>
+          <div class="restaurant-list">
+            {dest.restaurants.map((r: any) => (
+              <div class="restaurant-card" style={`--dest-color: ${dest.color}`}>
+                <div class="restaurant-header">
+                  <strong class="restaurant-name">{r.name}</strong>
+                  <span class="restaurant-type">{r.type}</span>
+                </div>
+                {r.notes && <p class="restaurant-notes">{r.notes}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   </div>
 </Layout>
@@ -223,8 +241,9 @@ function nights(start: string, end: string) {
   .activity-card {
     background: var(--surface);
     border: 1px solid var(--border);
+    border-top: 3px solid var(--dest-color, var(--accent));
     border-radius: var(--radius-lg);
-    padding: 28px;
+    overflow: hidden;
     transition: box-shadow 0.15s;
   }
 
@@ -232,49 +251,99 @@ function nights(start: string, end: string) {
     box-shadow: var(--shadow);
   }
 
-  .activity-header {
+  .activity-when {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 24px;
+    background: color-mix(in srgb, var(--dest-color, var(--accent)) 12%, transparent);
+    border-bottom: 1px solid var(--border);
   }
 
-  .activity-header h3 {
-    font-size: 1.1rem;
+  .when-day {
+    font-family: "Shippori Mincho", serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dest-color, var(--accent));
   }
 
-  .activity-when {
-    font-size: 0.78rem;
+  .when-period {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--text-muted);
-    background: var(--bg);
-    padding: 3px 10px;
-    border-radius: 20px;
-    white-space: nowrap;
-    flex-shrink: 0;
+  }
+
+  .activity-body {
+    padding: 20px 24px;
+  }
+
+  .activity-title {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: var(--text);
   }
 
   .activity-desc {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.7;
-    margin-bottom: 16px;
+    margin: 0;
   }
 
-  .activity-tips {
-    background: #fffbf0;
-    border-left: 3px solid #f0c040;
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 12px 16px;
+  .restaurants-section {
+    margin-top: 48px;
+  }
+
+  .restaurants-section h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .restaurant-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--dest-color, var(--accent));
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+  }
+
+  .restaurant-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .restaurant-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .restaurant-type {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--dest-color, var(--accent));
+    white-space: nowrap;
+  }
+
+  .restaurant-notes {
     font-size: 0.85rem;
+    color: var(--text-muted);
     line-height: 1.6;
-    color: #5a4a00;
-  }
-
-  .tips-label {
-    font-weight: 500;
-    margin-right: 8px;
+    margin: 0;
   }
 
   @media (max-width: 640px) {

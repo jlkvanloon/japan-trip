@@ -2,7 +2,7 @@ name: Tokyo (Shinjuku)
 slug: tokyo-shinjuku
 startDate: "2026-11-19"
 endDate: "2026-11-23"
-color: "#C0392B"
+color: "#c8102e"
 
 travel:
   from: Amsterdam (AMS)
@@ -18,6 +18,20 @@ hotel:
   notes: |
     Inchecken vanaf 15:00. Uitchecken voor 11:00. Ontbijt inbegrepen.
     Betaald 16 november: 235 euro.
+
+restaurants:
+  - name: Ichiran Ramen Shinjuku
+    type: Ramen
+    notes: Solo-eetcabines, intense tonkotsu bouillon. Open 24/7.
+  - name: Omoide Yokocho
+    type: Yakitori
+    notes: Smal steegje vol rokerige yakitori-kraampjes. Ga na 19:00.
+  - name: Tsunahachi Shinjuku
+    type: Tempura
+    notes: Klassieke tempura-eetzaak opgericht in 1923. Betaalbaar lunchmenu.
+  - name: Niku no Mansei
+    type: Sukiyaki / Shabu-shabu
+    notes: Kwaliteitsvlees in een rustige omgeving vlak bij Shinjuku.
 
 activities:
   brief:

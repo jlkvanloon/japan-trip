@@ -124,6 +124,7 @@ function fmtShort(dateStr: string) {
   <div class="container">
 
     <div class="cal-layout">
+      <div class="cal-panel">
       <!-- Calendar: weekday header + one label+cells pair per week -->
       <div class="cal-wrap">
         <!-- Weekday header -->
@@ -169,6 +170,7 @@ function fmtShort(dateStr: string) {
           );
         })}
       </div>
+      </div><!-- /cal-panel -->
 
     </div>
   </div>
@@ -183,17 +185,16 @@ function fmtShort(dateStr: string) {
 
     <div class="popup-grid">
       <div class="popup-block">
-        <div class="popup-block-label"><span class="popup-icon">✈</span> Reizen</div>
+        <div class="popup-block-label">Reis</div>
         <p id="popup-travel-method" class="popup-sub"></p>
-        <p id="popup-travel-details"></p>
       </div>
       <div class="popup-block">
-        <div class="popup-block-label"><span class="popup-icon">🏨</span> Verblijf</div>
+        <div class="popup-block-label">Verblijf</div>
         <p id="popup-hotel-name" class="popup-sub"></p>
         <p id="popup-hotel-address"></p>
       </div>
       <div class="popup-block popup-block--full">
-        <div class="popup-block-label"><span class="popup-icon">🗺</span> Activiteiten</div>
+        <div class="popup-block-label">Activiteiten</div>
         <ul id="popup-activities"></ul>
       </div>
     </div>
@@ -237,7 +238,6 @@ function fmtShort(dateStr: string) {
       `${fmtDate(d.startDate)} – ${fmtDate(d.endDate)}`;
     (document.getElementById("popup-travel-method") as HTMLElement).textContent =
       `${d.travel.method} vanaf ${d.travel.from}`;
-    (document.getElementById("popup-travel-details") as HTMLElement).textContent = d.travel.details;
     (document.getElementById("popup-hotel-name") as HTMLElement).textContent = d.hotel.name;
     (document.getElementById("popup-hotel-address") as HTMLElement).textContent = d.hotel.address;
     (document.getElementById("popup-activities") as HTMLElement).innerHTML =
@@ -285,6 +285,16 @@ function fmtShort(dateStr: string) {
     display: block;
   }
 
+  .cal-panel {
+    --text: #2a0810;
+    --text-muted: #7a3040;
+    --border: #d8a8b0;
+    --bg: #f5ede6;
+    background: #f5ede6;
+    border-radius: var(--radius-lg);
+    padding: 32px;
+  }
+
   .cal-wrap {}
 
   .week-block {
@@ -297,8 +307,8 @@ function fmtShort(dateStr: string) {
 
   .dest-label {
     border: none;
-    background: color-mix(in srgb, var(--dest-color) 22%, transparent);
-    color: color-mix(in srgb, var(--dest-color) 85%, black);
+    background: color-mix(in srgb, var(--dest-color) 40%, transparent);
+    color: color-mix(in srgb, var(--dest-color) 90%, #1a0608);
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -382,7 +392,7 @@ function fmtShort(dateStr: string) {
   }
 
   .cal-day--trip {
-    background: color-mix(in srgb, var(--dest-color) 18%, transparent);
+    background: color-mix(in srgb, var(--dest-color) 40%, transparent);
     cursor: pointer;
   }
 
@@ -415,13 +425,13 @@ function fmtShort(dateStr: string) {
 
   .day-num {
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 700;
     color: var(--text);
     line-height: 1;
   }
 
   .cal-day--trip .day-num {
-    color: color-mix(in srgb, var(--dest-color) 90%, black);
+    color: color-mix(in srgb, var(--dest-color) 90%, #1a0608);
   }
 
   .day-month {
@@ -434,7 +444,7 @@ function fmtShort(dateStr: string) {
   }
 
   .cal-day--trip .day-month {
-    color: color-mix(in srgb, var(--dest-color) 80%, black);
+    color: color-mix(in srgb, var(--dest-color) 80%, #1a0608);
     opacity: 0.8;
   }
 
@@ -454,7 +464,7 @@ function fmtShort(dateStr: string) {
   .popup-overlay[hidden] { display: none; }
 
   .popup {
-    background: #ffffff;
+    background: var(--surface);
     border-radius: var(--radius-lg);
     padding: 32px;
     max-width: 580px;
@@ -543,8 +553,10 @@ function fmtShort(dateStr: string) {
   }
 
   .popup-cta {
-    display: inline-block;
-    background: var(--text);
+    display: block;
+    margin-left: auto;
+    width: fit-content;
+    background: var(--accent);
     color: #fff;
     padding: 10px 20px;
     border-radius: var(--radius);

@@ -2,7 +2,7 @@ name: Osaka
 slug: osaka
 startDate: "2026-11-30"
 endDate: "2026-12-03"
-color: "#E67E22"
+color: "#c8601e"
 
 travel:
   from: Hiroshima
@@ -18,6 +18,20 @@ hotel:
   notes: |
     Inchecken 15:00-23:00. Uitchecken tot 11:00.
     Ontbijt niet inbegrepen. Betaald 24 november: 544 euro.
+
+restaurants:
+  - name: Ichifuji
+    type: Kushikatsu
+    notes: Gefrituurd vlees en groenten op stokjes. Heilige regel — nooit twee keer dippen.
+  - name: Mizuno
+    type: Okonomiyaki (Osaka-stijl)
+    notes: Iconic adres in Dotonbori, opgericht in 1945. Wachtrij maar de moeite waard.
+  - name: Kuromon Ichiba
+    type: Markt / Streetfood
+    notes: Verse sashimi, gegrilde sint-jakobsschelpen en tamagoyaki. Ochtend het levendigst.
+  - name: Kani Doraku
+    type: Krab
+    notes: Het reuze-krabsymbool aan de gevel is onmisbaar Dotonbori-icoon. Specialiteit: krab.
 
 activities:
   brief:

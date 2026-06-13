@@ -135,16 +135,13 @@ while (cursor < tripEnd) {
 
     <div class="popup-grid">
       <div class="popup-block">
-        <div class="popup-block-label">
-          <span class="popup-icon">✈</span> Reizen
-        </div>
+        <div class="popup-block-label">Reis</div>
         <p id="popup-travel-method" class="popup-sub"></p>
-        <p id="popup-travel-details"></p>
       </div>
 
       <div class="popup-block">
         <div class="popup-block-label">
-          <span class="popup-icon">🏨</span> Verblijf
+          Verblijf
         </div>
         <p id="popup-hotel-name" class="popup-sub"></p>
         <p id="popup-hotel-address"></p>
@@ -152,7 +149,7 @@ while (cursor < tripEnd) {
 
       <div class="popup-block popup-block--full">
         <div class="popup-block-label">
-          <span class="popup-icon">🗺</span> Activiteiten
+          Activiteiten
         </div>
         <ul id="popup-activities"></ul>
       </div>
@@ -208,8 +205,6 @@ while (cursor < tripEnd) {
       `${fmtDate(d.startDate)} – ${fmtDate(d.endDate)}`;
     (document.getElementById("popup-travel-method") as HTMLElement).textContent =
       `${d.travel.method} vanaf ${d.travel.from}`;
-    (document.getElementById("popup-travel-details") as HTMLElement).textContent =
-      d.travel.details;
     (document.getElementById("popup-hotel-name") as HTMLElement).textContent = d.hotel.name;
     (document.getElementById("popup-hotel-address") as HTMLElement).textContent =
       d.hotel.address;
@@ -523,8 +518,10 @@ while (cursor < tripEnd) {
   }
 
   .popup-cta {
-    display: inline-block;
-    background: var(--text);
+    display: block;
+    margin-left: auto;
+    width: fit-content;
+    background: var(--accent);
     color: #fff;
     padding: 10px 20px;
     border-radius: var(--radius);

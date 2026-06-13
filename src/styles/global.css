@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Shippori+Mincho:wght@400;600&display=swap");
 
 :root {
-  --bg: #faf9f7;
-  --surface: #ffffff;
-  --text: #1a1a1a;
-  --text-muted: #6b6b6b;
-  --border: #e8e4df;
-  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --bg: #3d0f18;
+  --surface: #4f1522;
+  --text: #fff0f0;
+  --text-muted: #b07880;
+  --border: #6b2030;
+  --accent: #ff4455;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
   --radius: 8px;
   --radius-lg: 16px;
 }

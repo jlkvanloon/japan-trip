@@ -22,6 +22,14 @@ const destinations = defineCollection({
       address: z.string(),
       notes: z.string().optional(),
     }),
+    restaurants: z.array(
+      z.object({
+        name: z.string(),
+        type: z.string(),
+        when: z.string().optional(),
+        notes: z.string().optional(),
+      })
+    ).optional(),
     activities: z.object({
       brief: z.array(z.string()),
       detailed: z.array(

@@ -2,7 +2,7 @@ name: Tokyo (Asakusa)
 slug: tokyo-asakusa
 startDate: "2026-12-03"
 endDate: "2026-12-06"
-color: "#C0392B"
+color: "#a01828"
 
 travel:
   from: Osaka
@@ -18,6 +18,20 @@ hotel:
   notes: |
     Inchecken 15:00-00:00. Uitchecken tot 10:00.
     Ontbijt niet inbegrepen. Betaald 29 november: 657 euro.
+
+restaurants:
+  - name: Asakusa Imahan
+    type: Sukiyaki
+    notes: Legendarische sukiyaki met Wagyu, vlak bij Senso-ji. Reserveren aanbevolen.
+  - name: Sometaro
+    type: Okonomiyaki
+    notes: Maak je eigen okonomiyaki op een teppan aan tafel. Sfeervol en goedkoop.
+  - name: Tsukiji Outer Market
+    type: Sushi / Streetfood
+    notes: Vroeg ontbijt met verse sashimi en sushi-kraampjes. Open vanaf 05:00.
+  - name: Daikokuya Tempura
+    type: Tempura
+    notes: Beroemde tempura-zaak in Asakusa met wachtrij — kom vroeg.
 
 activities:
   brief:

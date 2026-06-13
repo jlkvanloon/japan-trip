@@ -2,7 +2,7 @@ name: Hakone
 slug: hakone
 startDate: 2026-11-23
 endDate: 2026-11-24
-color: "#ff31f3"
+color: "#b8960c"
 travel:
   from: Tokyo (Shinjuku)
   method: Trein (Hakone Freepass)
@@ -26,6 +26,17 @@ hotel:
     Geef dieetwensen vooraf door. Reserveer de Prive Onsen van tevoren bij het hotel.
 
     Betaald 19 november: 232 euro.
+restaurants:
+  - name: Mount View Hakone (diner)
+    type: Kaiseki
+    notes: Inbegrepen bij het verblijf. Traditioneel meergangenmenu op de kamer.
+  - name: Amazake Chaya
+    type: Theehuis
+    notes: 400 jaar oud theehuis. Zoete amazake rijstdrank en mochi. Alleen lunch.
+  - name: Hakone Beer
+    type: Bier & snacks
+    notes: Klein brouwerij-restaurant in Hakone-Yumoto met lokale craft bieren.
+
 activities:
   brief:
     - Hakone Loop per bus, kabelbaan & piratenschip

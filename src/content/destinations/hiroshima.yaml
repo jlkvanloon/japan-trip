@@ -2,7 +2,7 @@ name: Hiroshima
 slug: hiroshima
 startDate: "2026-11-29"
 endDate: "2026-11-30"
-color: "#8E44AD"
+color: "#6b8faa"
 
 travel:
   from: Kyoto
@@ -17,6 +17,17 @@ hotel:
   notes: |
     Inchecken 15:00-23:00. Uitchecken tot 10:00.
     Ontbijt niet inbegrepen. Betaald 23 november: 244 euro.
+
+restaurants:
+  - name: Okonomi-mura
+    type: Okonomiyaki (Hiroshima-stijl)
+    notes: Gebouw met 25 restaurants op meerdere verdiepingen. Verdieping 2 en 3 het best.
+  - name: Kakifuku
+    type: Oesters
+    notes: Hiroshima is Japan's oesterhoofdstad. Gegrild, rauw of gebakken.
+  - name: Nagataya
+    type: Okonomiyaki
+    notes: Befaamd adres voor Hiroshima-stijl okonomiyaki. Zit aan de teppan-bar.
 
 activities:
   brief:

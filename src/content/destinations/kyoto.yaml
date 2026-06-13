@@ -2,7 +2,7 @@ name: Kyoto
 slug: kyoto
 startDate: "2026-11-24"
 endDate: "2026-11-29"
-color: "#27AE60"
+color: "#7a8c6e"
 
 travel:
   from: Hakone
@@ -19,6 +19,20 @@ hotel:
   notes: |
     Inchecken 14:00-00:00. Uitchecken 03:00-11:00. Ontbijt niet inbegrepen.
     Centrale ligging vlak bij Shijo-Karasuma. Betaald 22 oktober: 1863 euro.
+
+restaurants:
+  - name: Nishiki Market
+    type: Streetfood / Markt
+    notes: De "keuken van Kyoto" — smalle markt met 100+ stalletjes. Ideaal voor lunch.
+  - name: Pontocho
+    type: Kaiseki / Izakaya
+    notes: Smal steegje langs de Kamo-rivier met restaurants op alle niveaus. Ga bij schemering.
+  - name: Tofu Restaurant Okutan
+    type: Kaiseki Tofu
+    notes: Vlak bij Nanzen-ji. Traditioneel yudofu (gestoomde tofu) in een tempel­tuin. Reserveren.
+  - name: Ramen Sen-no-Kaze
+    type: Ramen
+    notes: Lokale favoriet in de Shijo-buurt. Rijke shoyu-bouillon, open tot laat.
 
 activities:
   brief:
