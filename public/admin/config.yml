@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: jlkvanloon/japan-trip
   branch: main
+  base_url: https://japan-cms.tizjoaquin.workers.dev
 
 locale: nl
 
@@ -30,30 +32,47 @@ collections:
         fields:
           - { label: Vertrek vanuit, name: from, widget: string }
           - { label: Vervoerstype, name: method, widget: string, hint: "Bijv. Vliegtuig, Shinkansen, Trein" }
-          - { label: Details, name: details, widget: text }
+          - { label: Tijden, name: tijden, widget: string, required: false, hint: "Bijv. 14:20 AMS → 11:45+1 NRT" }
+          - { label: Vluchtnummer, name: vluchtnummer, widget: string, required: false }
+          - { label: Treinnummer, name: treinnummer, widget: string, required: false }
+          - { label: Duur, name: duur, widget: string, required: false, hint: "Bijv. 13u25" }
+          - { label: Klasse, name: klasse, widget: string, required: false }
+          - { label: Bagage, name: bagage, widget: string, required: false }
 
       - label: Verblijf
         name: hotel
         widget: object
         fields:
           - { label: Naam hotel, name: name, widget: string }
-          - { label: Adres, name: address, widget: string }
+          - { label: Website URL, name: url, widget: string, required: false }
+          - { label: Incheck, name: checkIn, widget: string, required: false }
+          - { label: Uitcheck, name: checkOut, widget: string, required: false }
+          - { label: Ontbijt, name: breakfast, widget: string, required: false }
+          - { label: Betaling, name: payment, widget: string, required: false }
+
+      - label: Restaurants
+        name: restaurants
+        widget: list
+        required: false
+        fields:
+          - { label: Naam, name: name, widget: string }
+          - { label: Type, name: type, widget: string }
+          - { label: Wanneer, name: when, widget: string, required: false }
           - { label: Notities, name: notes, widget: text, required: false }
 
-      - label: Activiteiten
+      - label: Activiteiten (popup overzicht)
         name: activities
         widget: object
         fields:
-          - label: Kort overzicht (popup)
+          - label: Kort overzicht
             name: brief
             widget: list
             field: { label: Activiteit, name: item, widget: string }
 
-          - label: Uitgebreid (detailpagina)
-            name: detailed
-            widget: list
-            fields:
-              - { label: Naam, name: name, widget: string }
-              - { label: Wanneer, name: when, widget: string, hint: "Bijv. Dag 1 — ochtend" }
-              - { label: Beschrijving, name: description, widget: text }
-              - { label: Tips, name: tips, widget: text, required: false }
+      - label: Dag planning
+        name: dagplanning
+        widget: list
+        required: false
+        fields:
+          - { label: Titel, name: titel, widget: string, hint: "Bijv. Aankomst & Shibuya" }
+          - { label: Beschrijving, name: content, widget: text }
