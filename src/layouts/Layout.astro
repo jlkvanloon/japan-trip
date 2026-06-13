@@ -108,13 +108,14 @@ const { title, description = "Onze reis door Japan — november / december 2026"
   }
 
   header {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--accent-dark);
     padding: 16px 0;
     position: sticky;
     top: 0;
-    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    background: var(--accent);
     backdrop-filter: blur(8px);
     z-index: 100;
+    color: #ffffff;
   }
 
   header .container {
@@ -133,7 +134,8 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     font-family: "Noto Sans JP", sans-serif;
     font-size: 1.4rem;
     font-weight: 500;
-    color: var(--accent);
+    color: #ffffff;
+    opacity: 0.85;
   }
 
   .logo-text {
