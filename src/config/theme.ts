@@ -8,5 +8,5 @@ export const theme = {
   accent:      "#c03028",
   accentDark:  "#8a1e18",
 
-  palette: ["#c03028", "#2e5c8a", "#5a8a4a", "#8a6020"],
+  palette: ["#c03028", "#2e5c8a", "#5a8a4a", "#8a6020", "#6a3a7a", "#2a7a6a"],
 };
