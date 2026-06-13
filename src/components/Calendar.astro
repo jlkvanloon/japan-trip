@@ -41,6 +41,7 @@ const tripStartStr = sorted[0].startDate;
 const tripEndStr = sorted[sorted.length - 1].endDate;
 
 const destColor = new Map(sorted.map((d, i) => [d.slug, PALETTE[i % PALETTE.length]]));
+const prevDestColor = new Map(sorted.map((d, i) => [d.slug, i > 0 ? PALETTE[(i - 1) % PALETTE.length] : null]));
 
 const MONTH_SHORT: Record<number, string> = {
   10: "nov", 11: "dec",
@@ -157,10 +158,16 @@ function fmtShort(dateStr: string) {
               <div class="cal-grid day-row">
                 {week.map((day) => {
                   if (!day) return <div class="cal-day cal-day--empty" />;
+                  const color = day.dest ? destColor.get(day.dest.slug) : null;
+                  const prev = day.dest ? prevDestColor.get(day.dest.slug) : null;
+                  const isTravel = day.isFirst && !!prev;
+                  const cellStyle = isTravel
+                    ? `background: linear-gradient(135deg, color-mix(in srgb, ${prev} 40%, white) 50%, color-mix(in srgb, ${color} 40%, white) 50%); --dest-color: ${color}`
+                    : color ? `--dest-color: ${color}` : "";
                   return (
                     <button
-                      class:list={["cal-day", day.dest ? "cal-day--trip" : "cal-day--off"]}
-                      style={day.dest ? `--dest-color: ${destColor.get(day.dest.slug)}` : ""}
+                      class:list={["cal-day", day.dest ? "cal-day--trip" : "cal-day--off", isTravel && "cal-day--travel"]}
+                      style={cellStyle}
                       data-slug={day.dest?.slug}
                       disabled={!day.dest}
                       aria-label={day.dest ? `${day.date.getDate()} ${day.monthLabel} — ${day.dest.name}` : `${day.date.getDate()} ${day.monthLabel}`}
@@ -403,6 +410,7 @@ function fmtShort(dateStr: string) {
     background: color-mix(in srgb, var(--dest-color) 40%, transparent);
     cursor: pointer;
   }
+
 
   .cal-day--trip:hover {
     filter: brightness(0.92);
