@@ -240,12 +240,17 @@ function fmtShort(dateStr: string) {
     display: block;
   }
 
-  .cal-wrap {}
+  /* Allow horizontal scroll on mobile so cells stay usable */
+  .cal-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
   .cal-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 3px;
+    grid-template-columns: repeat(7, minmax(72px, 1fr));
+    gap: 4px;
+    min-width: 520px;
   }
 
   .cal-weekday {
@@ -258,19 +263,19 @@ function fmtShort(dateStr: string) {
   }
 
   .cal-day {
-    aspect-ratio: 1;
     border: none;
     border-radius: 6px;
     cursor: default;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1px;
-    padding: 4px 2px 2px;
+    justify-content: flex-end;
+    gap: 2px;
+    padding: 28px 4px 8px;
     position: relative;
     transition: filter 0.15s, transform 0.12s;
     overflow: hidden;
+    min-height: 72px;
   }
 
   .cal-day--empty {
@@ -350,13 +355,13 @@ function fmtShort(dateStr: string) {
     left: 0;
     right: 0;
     background: color-mix(in srgb, var(--dest-color) 40%, transparent);
-    color: color-mix(in srgb, var(--dest-color) 90%, black);
-    font-size: 0.42rem;
+    color: color-mix(in srgb, var(--dest-color) 85%, black);
+    font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     text-align: center;
-    padding: 2px 2px;
+    padding: 5px 4px 4px;
     line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;

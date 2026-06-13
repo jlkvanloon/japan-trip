@@ -118,17 +118,6 @@ const mapData = sorted
       });
 
       L.marker(d.coords, { icon }).addTo(map);
-
-      var offset = isSameAsPrev ? [14, 0] : [0, -14];
-      var label = L.tooltip({
-        permanent: true,
-        direction: isSameAsPrev ? "right" : "top",
-        className: "map-label",
-        offset: offset,
-      })
-        .setContent(d.name)
-        .setLatLng(d.coords);
-      map.addLayer(label);
     });
 
     // Fit map to route with padding
@@ -161,22 +150,6 @@ const mapData = sorted
 </style>
 
 <style is:global>
-  .map-label {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    font-family: "Shippori Mincho", serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #1a1a1a;
-    white-space: nowrap;
-    padding: 0 !important;
-  }
-
-  .map-label::before {
-    display: none !important;
-  }
-
   .leaflet-attribution-flag {
     display: none !important;
   }
