@@ -2,7 +2,7 @@ name: Hiroshima
 slug: hiroshima
 startDate: "2026-11-29"
 endDate: "2026-11-30"
-color: "#6b8faa"
+color: "#1e4d78"
 
 travel:
   from: Kyoto
@@ -65,14 +65,3 @@ activities:
         Controleer getijden van tevoren — hoogwater is het fotogeniekst.
         Het eiland is klein genoeg om te voet te verkennen.
         Laatste boot terug is rond 22:00.
-    - name: Hiroshima-stijl Okonomiyaki
-      when: Elke maaltijd
-      description: |
-        Hiroshima-stijl okonomiyaki is een gelaagde hartige pannenkoek met yakisoba
-        noedels, kool, ei en je keuze aan toppings — heel anders dan Osaka-stijl.
-        Ga naar Okonomi-mura ("Okonomiyaki Dorp"), een gebouw met circa 25 restaurants
-        op meerdere verdiepingen.
-      tips: |
-        Wijs naar het menu of vraag om "Hiroshima-style" met varkensvlees en ei.
-        Kijk hoe de kok het bereidt op de teppan voor je neus.
-        Budget 1000-1500 yen per persoon.
