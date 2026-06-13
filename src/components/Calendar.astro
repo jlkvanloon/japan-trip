@@ -6,7 +6,7 @@ interface Destination {
   name: string;
   startDate: string;
   endDate: string;
-  travel: { from: string; method: string };
+  travel: { titel: string; from: string; method: string }[];
   hotel: { name: string; url?: string };
   activities: { brief: string[]; detailed: any[] };
 }
@@ -249,7 +249,7 @@ function fmtShort(dateStr: string) {
     (document.getElementById("popup-dates") as HTMLElement).textContent =
       `${fmtDate(d.startDate)} – ${fmtDate(d.endDate)}`;
     (document.getElementById("popup-travel-method") as HTMLElement).textContent =
-      `${d.travel.method} vanaf ${d.travel.from}`;
+      `${d.travel[0].method} vanaf ${d.travel[0].from}`;
     (document.getElementById("popup-hotel-name") as HTMLElement).textContent = d.hotel.name;
     const hotelLink = document.getElementById("popup-hotel-link") as HTMLAnchorElement;
     if (d.hotel.url) {

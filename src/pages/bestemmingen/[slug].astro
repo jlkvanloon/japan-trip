@@ -54,24 +54,24 @@ function nights(start: string, end: string) {
       </div>
 
       <div class="dest-grid">
-        <!-- Travel -->
-        <section class="info-card">
-          <h2 class="info-card-title">
-            Reis
-          </h2>
-          <dl>
-            <dt>Vertrek vanuit</dt>
-            <dd>{dest.travel.from}</dd>
-            <dt>Vervoer</dt>
-            <dd>{dest.travel.method}</dd>
-            {dest.travel.tijden && <><dt>Tijden</dt><dd>{dest.travel.tijden}</dd></>}
-            {dest.travel.vluchtnummer && <><dt>Vluchtnummer</dt><dd>{dest.travel.vluchtnummer}</dd></>}
-            {dest.travel.treinnummer && <><dt>Treinnummer</dt><dd>{dest.travel.treinnummer}</dd></>}
-            {dest.travel.duur && <><dt>Duur</dt><dd>{dest.travel.duur}</dd></>}
-            {dest.travel.klasse && <><dt>Klasse</dt><dd>{dest.travel.klasse}</dd></>}
-            {dest.travel.bagage && <><dt>Bagage</dt><dd>{dest.travel.bagage}</dd></>}
-          </dl>
-        </section>
+        <!-- Travel entries -->
+        {dest.travel.map((reis) => (
+          <section class="info-card">
+            <h2 class="info-card-title">{reis.titel}</h2>
+            <dl>
+              <dt>Vertrek vanuit</dt>
+              <dd>{reis.from}</dd>
+              <dt>Vervoer</dt>
+              <dd>{reis.method}</dd>
+              {reis.tijden && <><dt>Tijden</dt><dd>{reis.tijden}</dd></>}
+              {reis.vluchtnummer && <><dt>Vluchtnummer</dt><dd>{reis.vluchtnummer}</dd></>}
+              {reis.treinnummer && <><dt>Treinnummer</dt><dd>{reis.treinnummer}</dd></>}
+              {reis.duur && <><dt>Duur</dt><dd>{reis.duur}</dd></>}
+              {reis.klasse && <><dt>Klasse</dt><dd>{reis.klasse}</dd></>}
+              {reis.bagage && <><dt>Bagage</dt><dd>{reis.bagage}</dd></>}
+            </dl>
+          </section>
+        ))}
 
         <!-- Hotel -->
         <section class="info-card">
@@ -195,7 +195,7 @@ function nights(start: string, end: string) {
 
   .dest-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
     margin-bottom: 48px;
   }

@@ -11,7 +11,8 @@ const destinations = defineCollection({
     slug: z.string(),
     startDate: dateStr,
     endDate: dateStr,
-    travel: z.object({
+    travel: z.array(z.object({
+      titel: z.string(),
       from: z.string(),
       method: z.string(),
       tijden: z.string().optional(),
@@ -20,7 +21,7 @@ const destinations = defineCollection({
       duur: z.string().optional(),
       klasse: z.string().optional(),
       bagage: z.string().optional(),
-    }),
+    })),
     hotel: z.object({
       name: z.string(),
       url: z.string().optional(),

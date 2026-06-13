@@ -4,9 +4,10 @@ startDate: "2026-11-24"
 endDate: "2026-11-29"
 
 travel:
-  from: Hakone
-  method: Shinkansen
-  duur: "~1u20"
+  - titel: Shinkansen naar Kyoto
+    from: Hakone
+    method: Shinkansen
+    duur: "~1u20"
 
 hotel:
   name: Richmond Hotel Premier Kyoto Shijo

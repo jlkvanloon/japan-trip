@@ -4,9 +4,10 @@ startDate: "2026-12-03"
 endDate: "2026-12-06"
 
 travel:
-  from: Osaka
-  method: Shinkansen
-  duur: "~2u30"
+  - titel: Shinkansen naar Tokyo
+    from: Osaka
+    method: Shinkansen
+    duur: "~2u30"
 
 hotel:
   name: APA Hotel Asakusa Kuramae Kita

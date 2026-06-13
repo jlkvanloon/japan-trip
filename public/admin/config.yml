@@ -24,10 +24,11 @@ collections:
       - { label: Slug (URL), name: slug, widget: string }
       - { label: Startdatum, name: startDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false }
       - { label: Einddatum, name: endDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false }
-      - label: Reis
+      - label: Reizen
         name: travel
-        widget: object
+        widget: list
         fields:
+          - { label: Titel, name: titel, widget: string, hint: "Bijv. Vlucht naar Tokyo" }
           - { label: Vertrek vanuit, name: from, widget: string }
           - { label: Vervoerstype, name: method, widget: string, hint: "Bijv. Vliegtuig, Shinkansen, Trein" }
           - { label: Tijden, name: tijden, widget: string, required: false, hint: "Bijv. 14:20 AMS → 11:45+1 NRT" }

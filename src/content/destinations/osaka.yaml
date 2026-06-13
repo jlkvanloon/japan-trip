@@ -4,9 +4,10 @@ startDate: "2026-11-30"
 endDate: "2026-12-03"
 
 travel:
-  from: Hiroshima
-  method: Shinkansen
-  duur: "~1 uur"
+  - titel: Shinkansen naar Osaka
+    from: Hiroshima
+    method: Shinkansen
+    duur: "~1 uur"
 
 hotel:
   name: Hotel Noum OSAKA

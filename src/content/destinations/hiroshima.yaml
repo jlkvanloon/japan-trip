@@ -4,9 +4,10 @@ startDate: "2026-11-29"
 endDate: "2026-11-30"
 
 travel:
-  from: Kyoto
-  method: Shinkansen
-  duur: "~1 uur"
+  - titel: Shinkansen naar Hiroshima
+    from: Kyoto
+    method: Shinkansen
+    duur: "~1 uur"
 
 hotel:
   name: KIRO Hiroshima by THE SHARE HOTELS
