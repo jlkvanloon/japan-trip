@@ -47,6 +47,7 @@ collections:
           - { label: Uitcheck, name: checkOut, widget: string, required: false }
           - { label: Ontbijt, name: breakfast, widget: string, required: false }
           - { label: Betaling, name: payment, widget: string, required: false }
+          - { label: Opmerkingen, name: opmerkingen, widget: text, required: false }
 
       - label: Restaurants
         name: restaurants

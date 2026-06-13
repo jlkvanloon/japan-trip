@@ -28,6 +28,7 @@ const destinations = defineCollection({
       checkOut: z.string().optional(),
       breakfast: z.string().optional(),
       payment: z.string().optional(),
+      opmerkingen: z.string().optional(),
     }),
     restaurants: z.array(
       z.object({
