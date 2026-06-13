@@ -1,4 +1,6 @@
 ---
+import { theme } from '../config/theme';
+
 interface Destination {
   slug: string;
   name: string;
@@ -9,7 +11,7 @@ interface Destination {
   activities: { brief: string[]; detailed: any[] };
 }
 
-const PALETTE = ["#D36951", "#A93C3C", "#87846E", "#773736"];
+const PALETTE = theme.palette;
 
 interface Props {
   destinations: Destination[];
