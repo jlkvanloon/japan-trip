@@ -23,26 +23,51 @@ const sorted = [...destinations].sort(
 const tripStart = new Date(sorted[0].startDate);
 const tripEnd = new Date(sorted[sorted.length - 1].endDate);
 
-function getDestForDate(dateStr: string): Destination | null {
-  return sorted.find((d) => dateStr >= d.startDate && dateStr < d.endDate) ?? null;
-}
-
 function toDateStr(d: Date): string {
   return d.toISOString().split("T")[0];
 }
 
+// Last calendar day that is part of the trip (endDate is exclusive checkout day)
+const tripStartStr = toDateStr(tripStart);
+const tripEndStr = toDateStr(new Date(tripEnd.getTime() - 86400000));
+
+function getDestForDate(dateStr: string): Destination | null {
+  return sorted.find((d) => dateStr >= d.startDate && dateStr < d.endDate) ?? null;
+}
+
+type CalDay = {
+  date: Date | null;
+  dateStr: string | null;
+  dest: Destination | null;
+  inTrip: boolean;
+  isFirst: boolean;
+  isLast: boolean;
+  nextDay: string;
+};
+
 function buildMonth(year: number, month: number) {
-  // month is 0-indexed
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
-  // Dutch week starts Monday (0=Mon … 6=Sun)
-  const startOffset = (firstDay.getDay() + 6) % 7;
-  const days: Array<{ date: Date | null; dateStr: string | null; dest: Destination | null }> = [];
-  for (let i = 0; i < startOffset; i++) days.push({ date: null, dateStr: null, dest: null });
+  const startOffset = (firstDay.getDay() + 6) % 7; // Mon=0
+  const days: CalDay[] = [];
+  for (let i = 0; i < startOffset; i++) {
+    days.push({ date: null, dateStr: null, dest: null, inTrip: false, isFirst: false, isLast: false, nextDay: "" });
+  }
   for (let d = 1; d <= lastDay.getDate(); d++) {
     const date = new Date(year, month, d);
     const dateStr = toDateStr(date);
-    days.push({ date, dateStr, dest: getDestForDate(dateStr) });
+    const dest = getDestForDate(dateStr);
+    const nextDay = toDateStr(new Date(date.getTime() + 86400000));
+    const inTrip = dateStr >= tripStartStr && dateStr <= tripEndStr;
+    days.push({
+      date,
+      dateStr,
+      dest,
+      inTrip,
+      isFirst: !!(dest && dateStr === dest.startDate),
+      isLast: !!(dest && nextDay === dest.endDate),
+      nextDay,
+    });
   }
   return { name: firstDay.toLocaleDateString("nl-NL", { month: "long", year: "numeric" }), days };
 }
@@ -86,35 +111,23 @@ function fmtShort(dateStr: string) {
                 {weekdays.map((d) => (
                   <div class="cal-weekday">{d}</div>
                 ))}
-                {month.days.map(({ date, dateStr, dest }) => {
-                  if (!date) return <div class="cal-day cal-day--empty" />;
-
-                  const isFirst = dest && dateStr === dest.startDate;
-                  const isLast =
-                    dest &&
-                    toDateStr(new Date(new Date(dateStr!).getTime() + 86400000)) === dest.endDate;
-                  const isToday = dateStr === toDateStr(new Date());
-
+                {month.days.map((day) => {
+                  if (!day.date || !day.inTrip) return <div class="cal-day cal-day--empty" />;
                   return (
                     <button
                       class:list={[
                         "cal-day",
-                        dest ? "cal-day--trip" : "cal-day--off",
-                        isFirst && "cal-day--first",
-                        isLast && "cal-day--last",
-                        isToday && "cal-day--today",
+                        day.dest ? "cal-day--trip" : "cal-day--off",
+                        day.isFirst && "cal-day--first",
+                        day.isLast && "cal-day--last",
                       ]}
-                      style={dest ? `--dest-color: ${dest.color}` : ""}
-                      data-slug={dest?.slug}
-                      disabled={!dest}
-                      aria-label={
-                        dest
-                          ? `${date.getDate()} — ${dest.name}`
-                          : String(date.getDate())
-                      }
+                      style={day.dest ? `--dest-color: ${day.dest.color}` : ""}
+                      data-slug={day.dest?.slug}
+                      disabled={!day.dest}
+                      aria-label={day.dest ? `${day.date.getDate()} — ${day.dest.name}` : String(day.date.getDate())}
                     >
-                      <span class="day-num">{date.getDate()}</span>
-                      {isFirst && <span class="day-label">{dest!.name.split(" ")[0]}</span>}
+                      <span class="day-num">{day.date.getDate()}</span>
+                      {day.isFirst && day.dest && <span class="day-label">{day.dest.name.split(" ")[0]}</span>}
                     </button>
                   );
                 })}
@@ -315,11 +328,11 @@ function fmtShort(dateStr: string) {
 
   .cal-day--off {
     background: transparent;
+    pointer-events: none;
   }
 
   .cal-day--off .day-num {
-    color: var(--text-muted);
-    opacity: 0.4;
+    display: none;
   }
 
   .cal-day--trip {
