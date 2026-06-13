@@ -81,6 +81,33 @@ while (cursor <= gridEnd) {
   cursor.setDate(cursor.getDate() + 1);
 }
 
+// Group allDays into weeks of 7
+const weeks: CalDay[][] = [];
+for (let i = 0; i < allDays.length; i += 7) {
+  weeks.push(allDays.slice(i, i + 7) as CalDay[]);
+}
+
+// For each week, compute which destination spans which columns (1-indexed)
+type LabelSpan = { dest: Destination; colStart: number; colEnd: number };
+
+function getSpans(week: CalDay[]): LabelSpan[] {
+  const spans: LabelSpan[] = [];
+  let i = 0;
+  while (i < 7) {
+    const day = week[i];
+    if (day && day.inTrip && day.dest) {
+      const slug = day.dest.slug;
+      let j = i;
+      while (j < 7 && week[j]?.dest?.slug === slug) j++;
+      spans.push({ dest: day.dest, colStart: i + 1, colEnd: j });
+      i = j;
+    } else {
+      i++;
+    }
+  }
+  return spans;
+}
+
 const weekdays = ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"];
 
 function nights(start: string, end: string) {
@@ -97,32 +124,50 @@ function fmtShort(dateStr: string) {
   <div class="container">
 
     <div class="cal-layout">
-      <!-- Single unified calendar grid -->
+      <!-- Calendar: weekday header + one label+cells pair per week -->
       <div class="cal-wrap">
-        <div class="cal-grid">
-          {weekdays.map((d) => (
-            <div class="cal-weekday">{d}</div>
-          ))}
-          {allDays.map((day) => {
-            if (!day || !day.inTrip) return <div class="cal-day cal-day--empty" />;
-            return (
-              <button
-                class:list={[
-                  "cal-day",
-                  day.dest ? "cal-day--trip" : "cal-day--off",
-                ]}
-                style={day.dest ? `--dest-color: ${day.dest.color}` : ""}
-                data-slug={day.dest?.slug}
-                disabled={!day.dest}
-                aria-label={day.dest ? `${day.date.getDate()} ${day.monthLabel} — ${day.dest.name}` : `${day.date.getDate()} ${day.monthLabel}`}
-              >
-                {day.dest && <span class="day-strip">{day.dest.name}</span>}
-                <span class="day-num">{day.date.getDate()}</span>
-                <span class="day-month">{day.monthLabel}</span>
-              </button>
-            );
-          })}
+        <!-- Weekday header -->
+        <div class="cal-grid cal-header">
+          {weekdays.map((d) => <div class="cal-weekday">{d}</div>)}
         </div>
+
+        {weeks.map((week) => {
+          const spans = getSpans(week);
+          return (
+            <div class="week-block">
+              {/* Destination label row */}
+              <div class="cal-grid label-row">
+                {spans.map(({ dest, colStart, colEnd }) => (
+                  <button
+                    class="dest-label"
+                    style={`grid-column: ${colStart} / ${colEnd + 1}; --dest-color: ${dest.color}`}
+                    data-slug={dest.slug}
+                  >
+                    {dest.name}
+                  </button>
+                ))}
+              </div>
+              {/* Day cells */}
+              <div class="cal-grid day-row">
+                {week.map((day) => {
+                  if (!day || !day.inTrip) return <div class="cal-day cal-day--empty" />;
+                  return (
+                    <button
+                      class:list={["cal-day", day.dest ? "cal-day--trip" : "cal-day--off"]}
+                      style={day.dest ? `--dest-color: ${day.dest.color}` : ""}
+                      data-slug={day.dest?.slug}
+                      disabled={!day.dest}
+                      aria-label={day.dest ? `${day.date.getDate()} ${day.monthLabel} — ${day.dest.name}` : `${day.date.getDate()} ${day.monthLabel}`}
+                    >
+                      <span class="day-num">{day.date.getDate()}</span>
+                      <span class="day-month">{day.monthLabel}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
     </div>
@@ -242,6 +287,36 @@ function fmtShort(dateStr: string) {
 
   .cal-wrap {}
 
+  .week-block {
+    margin-bottom: 4px;
+  }
+
+  .label-row {
+    margin-bottom: 2px;
+  }
+
+  .dest-label {
+    border: none;
+    background: color-mix(in srgb, var(--dest-color) 22%, transparent);
+    color: color-mix(in srgb, var(--dest-color) 85%, black);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: filter 0.15s;
+  }
+
+  .dest-label:hover {
+    filter: brightness(0.92);
+  }
+
   .cal-grid {
     display: grid;
     grid-template-columns: repeat(7, minmax(72px, 1fr));
@@ -256,11 +331,6 @@ function fmtShort(dateStr: string) {
 
     .cal-day {
       min-height: 80px;
-    }
-
-    .day-strip {
-      font-size: 0.55rem;
-      padding: 4px 2px 3px;
     }
 
     .day-num {
@@ -367,26 +437,6 @@ function fmtShort(dateStr: string) {
     color: color-mix(in srgb, var(--dest-color) 80%, black);
     opacity: 0.8;
   }
-
-  .day-strip {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: color-mix(in srgb, var(--dest-color) 40%, transparent);
-    color: color-mix(in srgb, var(--dest-color) 85%, black);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 5px 4px 4px;
-    line-height: 1.2;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
 
   /* Popup (identical to Timeline version) */
   .popup-overlay {
