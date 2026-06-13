@@ -203,9 +203,9 @@ function fmtShort(dateStr: string) {
     <p id="popup-dates" class="popup-dates"></p>
 
     <div class="popup-grid">
-      <div class="popup-block">
+      <div class="popup-block popup-block--full">
         <div class="popup-block-label">Reis</div>
-        <p id="popup-travel-method" class="popup-sub"></p>
+        <ul id="popup-travel-list" class="popup-travel-list"></ul>
       </div>
       <div class="popup-block">
         <div class="popup-block-label">Verblijf</div>
@@ -255,8 +255,8 @@ function fmtShort(dateStr: string) {
     (document.getElementById("popup-title") as HTMLElement).textContent = d.name;
     (document.getElementById("popup-dates") as HTMLElement).textContent =
       `${fmtDate(d.startDate)} – ${fmtDate(d.endDate)}`;
-    (document.getElementById("popup-travel-method") as HTMLElement).textContent =
-      `${d.travel[0].method} vanaf ${d.travel[0].from}`;
+    (document.getElementById("popup-travel-list") as HTMLElement).innerHTML =
+      d.travel.map((r: any) => `<li><strong>${r.titel}</strong> — ${r.method} vanaf ${r.from}</li>`).join("");
     (document.getElementById("popup-hotel-name") as HTMLElement).textContent = d.hotel.name;
     const hotelLink = document.getElementById("popup-hotel-link") as HTMLAnchorElement;
     if (d.hotel.url) {
@@ -556,6 +556,14 @@ function fmtShort(dateStr: string) {
     color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 2px;
+  }
+
+  .popup-travel-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.88rem;
   }
 
   #popup-travel-details,
