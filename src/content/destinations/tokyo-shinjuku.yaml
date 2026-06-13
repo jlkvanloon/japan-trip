@@ -2,6 +2,11 @@ name: Tokyo (Shinjuku)
 slug: tokyo-shinjuku
 startDate: 2026-11-19
 endDate: 2026-11-23
+todos:
+  - Shibuya Sky tickets vooraf boeken
+  - IC-kaart opladen bij aankomst Narita
+  - Kawaguchiko bus reserveren voor Mount Fuji dag
+  - Yen pinnen bij 7-Eleven ATM
 travel:
   - titel: Vlucht naar Tokyo
     from: Amsterdam (AMS)
