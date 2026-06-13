@@ -44,7 +44,13 @@ const destinations = defineCollection({
     dagplanning: z.array(
       z.object({
         titel: z.string(),
-        content: z.string(),
+        content: z.string().optional(),
+        subsections: z.array(
+          z.object({
+            titel: z.string(),
+            beschrijving: z.string(),
+          })
+        ).optional(),
       })
     ).optional(),
   }),

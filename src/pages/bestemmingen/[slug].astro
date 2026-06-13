@@ -105,7 +105,18 @@ function nights(start: string, end: string) {
                   <span class="when-period">{dag.titel}</span>
                 </div>
                 <div class="activity-body">
-                  <p class="activity-desc">{dag.content}</p>
+                  {dag.subsections && dag.subsections.length > 0 ? (
+                    <div class="subsection-list">
+                      {dag.subsections.map((sub) => (
+                        <div class="subsection">
+                          <h4 class="subsection-title">{sub.titel}</h4>
+                          <p class="subsection-desc">{sub.beschrijving}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p class="activity-desc">{dag.content}</p>
+                  )}
                 </div>
               </article>
             ))}
@@ -297,6 +308,31 @@ function nights(start: string, end: string) {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.7;
+    margin: 0;
+  }
+
+  .subsection-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .subsection {
+    padding-left: 12px;
+    border-left: 2px solid color-mix(in srgb, var(--dest-color, var(--accent)) 40%, transparent);
+  }
+
+  .subsection-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 4px;
+  }
+
+  .subsection-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
     margin: 0;
   }
 

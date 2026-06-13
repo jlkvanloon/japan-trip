@@ -43,9 +43,11 @@ activities:
 
 dagplanning:
   - titel: Aankomst & Shibuya
-    content: |
-      Aankomst op Narita na lange vlucht. Narita Express naar Shinjuku (~80 min), inchecken hotel.
-      's Avonds Shibuya Crossing — de beroemdste kruising ter wereld. Daarna omhoog naar Shibuya Sky observatiedek voor panorama over de stad bij nacht. Kaartjes vooraf boeken.
+    subsections:
+      - titel: Aankomst & Transfer
+        beschrijving: Aankomst op Narita na lange vlucht. Narita Express naar Shinjuku (~80 min), inchecken hotel. Even bijkomen en de buurt verkennen.
+      - titel: Avond — Shibuya Crossing & Shibuya Sky
+        beschrijving: Shibuya Crossing — de beroemdste kruising ter wereld, indrukwekkend tijdens de avondspits. Daarna omhoog naar Shibuya Sky observatiedek voor panorama over de stad bij nacht. Kaartjes vooraf boeken.
   - titel: Meiji Shrine & Harajuku
     content: |
       Begin vroeg bij Meiji Jingu, een serene shinto-schrijn in een bebost park. Loop daarna door Takeshita Street voor excentrieke mode en crepes, eindig op het chique Omotesando-boulevard.
