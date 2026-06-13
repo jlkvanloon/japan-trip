@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import Timeline from "../components/Timeline.astro";
+import Calendar from "../components/Calendar.astro";
 
 const entries = await getCollection("destinations");
 const destinations = entries.map((e) => e.data);
 ---
 
 <Layout title="Japan 2026">
-  <Timeline destinations={destinations} />
+  <Calendar destinations={destinations} />
 </Layout>

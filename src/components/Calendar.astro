@@ -1,0 +1,582 @@
+---
+interface Destination {
+  slug: string;
+  name: string;
+  startDate: string;
+  endDate: string;
+  color: string;
+  travel: { from: string; method: string; details: string };
+  hotel: { name: string; address: string; notes?: string };
+  activities: { brief: string[]; detailed: any[] };
+}
+
+interface Props {
+  destinations: Destination[];
+}
+
+const { destinations } = Astro.props;
+
+const sorted = [...destinations].sort(
+  (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+);
+
+const tripStart = new Date(sorted[0].startDate);
+const tripEnd = new Date(sorted[sorted.length - 1].endDate);
+
+function getDestForDate(dateStr: string): Destination | null {
+  return sorted.find((d) => dateStr >= d.startDate && dateStr < d.endDate) ?? null;
+}
+
+function toDateStr(d: Date): string {
+  return d.toISOString().split("T")[0];
+}
+
+function buildMonth(year: number, month: number) {
+  // month is 0-indexed
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  // Dutch week starts Monday (0=Mon … 6=Sun)
+  const startOffset = (firstDay.getDay() + 6) % 7;
+  const days: Array<{ date: Date | null; dateStr: string | null; dest: Destination | null }> = [];
+  for (let i = 0; i < startOffset; i++) days.push({ date: null, dateStr: null, dest: null });
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const date = new Date(year, month, d);
+    const dateStr = toDateStr(date);
+    days.push({ date, dateStr, dest: getDestForDate(dateStr) });
+  }
+  return { name: firstDay.toLocaleDateString("nl-NL", { month: "long", year: "numeric" }), days };
+}
+
+const months = [
+  buildMonth(2026, 10), // November
+  buildMonth(2026, 11), // December
+];
+
+const weekdays = ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"];
+
+function nights(start: string, end: string) {
+  const diff = (new Date(end).getTime() - new Date(start).getTime()) / 86400000;
+  return diff === 1 ? "1 nacht" : `${diff} nachten`;
+}
+
+function fmtShort(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("nl-NL", { day: "numeric", month: "short" });
+}
+---
+
+<section class="cal-section">
+  <div class="container">
+    <div class="trip-header">
+      <h1>Japan 2026</h1>
+      <p class="trip-dates">
+        {fmtShort(sorted[0].startDate)} &ndash; {fmtShort(tripEnd.toISOString())}
+        &nbsp;&middot;&nbsp;
+        {Math.round((tripEnd.getTime() - tripStart.getTime()) / 86400000)} dagen
+      </p>
+    </div>
+
+    <div class="cal-layout">
+      <!-- Calendars -->
+      <div class="cal-months">
+        {
+          months.map((month) => (
+            <div class="cal-month">
+              <h2 class="month-name">{month.name}</h2>
+              <div class="cal-grid">
+                {weekdays.map((d) => (
+                  <div class="cal-weekday">{d}</div>
+                ))}
+                {month.days.map(({ date, dateStr, dest }) => {
+                  if (!date) return <div class="cal-day cal-day--empty" />;
+
+                  const isFirst = dest && dateStr === dest.startDate;
+                  const isLast =
+                    dest &&
+                    toDateStr(new Date(new Date(dateStr!).getTime() + 86400000)) === dest.endDate;
+                  const isToday = dateStr === toDateStr(new Date());
+
+                  return (
+                    <button
+                      class:list={[
+                        "cal-day",
+                        dest ? "cal-day--trip" : "cal-day--off",
+                        isFirst && "cal-day--first",
+                        isLast && "cal-day--last",
+                        isToday && "cal-day--today",
+                      ]}
+                      style={dest ? `--dest-color: ${dest.color}` : ""}
+                      data-slug={dest?.slug}
+                      disabled={!dest}
+                      aria-label={
+                        dest
+                          ? `${date.getDate()} — ${dest.name}`
+                          : String(date.getDate())
+                      }
+                    >
+                      <span class="day-num">{date.getDate()}</span>
+                      {isFirst && <span class="day-label">{dest!.name.split(" ")[0]}</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Legend / destination list -->
+      <aside class="cal-legend">
+        <h3 class="legend-title">Bestemmingen</h3>
+        {
+          sorted.map((dest) => (
+            <button class="legend-item" data-slug={dest.slug}>
+              <span class="legend-dot" style={`background: ${dest.color}`} />
+              <div class="legend-info">
+                <strong>{dest.name}</strong>
+                <span>
+                  {fmtShort(dest.startDate)} – {fmtShort(dest.endDate)}
+                </span>
+                <span class="legend-nights">{nights(dest.startDate, dest.endDate)}</span>
+              </div>
+            </button>
+          ))
+        }
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Popup -->
+<div id="popup-overlay" class="popup-overlay" hidden>
+  <div class="popup" role="dialog" aria-modal="true">
+    <button class="popup-close" id="popup-close" aria-label="Sluiten">&times;</button>
+    <h2 id="popup-title" class="popup-title"></h2>
+    <p id="popup-dates" class="popup-dates"></p>
+
+    <div class="popup-grid">
+      <div class="popup-block">
+        <div class="popup-block-label"><span class="popup-icon">✈</span> Reizen</div>
+        <p id="popup-travel-method" class="popup-sub"></p>
+        <p id="popup-travel-details"></p>
+      </div>
+      <div class="popup-block">
+        <div class="popup-block-label"><span class="popup-icon">🏨</span> Verblijf</div>
+        <p id="popup-hotel-name" class="popup-sub"></p>
+        <p id="popup-hotel-address"></p>
+      </div>
+      <div class="popup-block popup-block--full">
+        <div class="popup-block-label"><span class="popup-icon">🗺</span> Activiteiten</div>
+        <ul id="popup-activities"></ul>
+      </div>
+    </div>
+
+    <a id="popup-more" href="#" class="popup-cta">Bekijk alle details &rarr;</a>
+  </div>
+</div>
+
+<script is:inline id="dest-data" type="application/json" set:html={JSON.stringify(
+  sorted.map((d) => ({
+    slug: d.slug,
+    name: d.name,
+    startDate: d.startDate,
+    endDate: d.endDate,
+    travel: d.travel,
+    hotel: d.hotel,
+    activities: { brief: d.activities.brief },
+  }))
+)} />
+
+<script>
+  const data: Record<string, any> = {};
+  const raw = document.getElementById("dest-data")?.textContent;
+  if (raw) {
+    (JSON.parse(raw) as any[]).forEach((d) => (data[d.slug] = d));
+  }
+
+  const overlay = document.getElementById("popup-overlay") as HTMLElement;
+
+  function fmtDate(str: string) {
+    return new Date(str).toLocaleDateString("nl-NL", {
+      weekday: "short", day: "numeric", month: "long",
+    });
+  }
+
+  function openPopup(slug: string) {
+    const d = data[slug];
+    if (!d) return;
+    (document.getElementById("popup-title") as HTMLElement).textContent = d.name;
+    (document.getElementById("popup-dates") as HTMLElement).textContent =
+      `${fmtDate(d.startDate)} – ${fmtDate(d.endDate)}`;
+    (document.getElementById("popup-travel-method") as HTMLElement).textContent =
+      `${d.travel.method} vanaf ${d.travel.from}`;
+    (document.getElementById("popup-travel-details") as HTMLElement).textContent = d.travel.details;
+    (document.getElementById("popup-hotel-name") as HTMLElement).textContent = d.hotel.name;
+    (document.getElementById("popup-hotel-address") as HTMLElement).textContent = d.hotel.address;
+    (document.getElementById("popup-activities") as HTMLElement).innerHTML =
+      d.activities.brief.map((a: string) => `<li>${a}</li>`).join("");
+    (document.getElementById("popup-more") as HTMLAnchorElement).href = `/bestemmingen/${slug}`;
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePopup() {
+    overlay.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-slug]").forEach((el) => {
+    el.addEventListener("click", () => openPopup((el as HTMLElement).dataset.slug!));
+  });
+
+  document.getElementById("popup-close")!.addEventListener("click", closePopup);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closePopup(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
+</script>
+
+<style>
+  .cal-section {
+    padding: 60px 0 80px;
+  }
+
+  .trip-header {
+    margin-bottom: 48px;
+  }
+
+  .trip-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 8px;
+  }
+
+  .trip-dates {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Layout: calendars left, legend right */
+  .cal-layout {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .cal-months {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .cal-month {}
+
+  .month-name {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 400;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+  }
+
+  .cal-weekday {
+    text-align: center;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    padding-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 6px;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 2px;
+    position: relative;
+    transition: filter 0.15s, transform 0.12s;
+  }
+
+  .cal-day--empty {
+    background: transparent;
+  }
+
+  .cal-day--off {
+    background: transparent;
+  }
+
+  .cal-day--off .day-num {
+    color: var(--text-muted);
+    opacity: 0.4;
+  }
+
+  .cal-day--trip {
+    background: color-mix(in srgb, var(--dest-color) 18%, transparent);
+    cursor: pointer;
+  }
+
+  .cal-day--trip:hover {
+    filter: brightness(0.92);
+    transform: scale(1.08);
+    z-index: 2;
+  }
+
+  .cal-day--first {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .cal-day--last {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .cal-day--today .day-num {
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .day-num {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .cal-day--trip .day-num {
+    color: color-mix(in srgb, var(--dest-color) 90%, black);
+    font-weight: 500;
+  }
+
+  .day-label {
+    font-size: 0.45rem;
+    color: color-mix(in srgb, var(--dest-color) 90%, black);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-align: center;
+    line-height: 1;
+  }
+
+  /* Legend */
+  .cal-legend {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: sticky;
+    top: 80px;
+  }
+
+  .legend-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 8px;
+    border-radius: var(--radius);
+    text-align: left;
+    transition: background 0.15s;
+  }
+
+  .legend-item:hover {
+    background: var(--bg);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .legend-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .legend-info strong {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .legend-info span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .legend-nights {
+    font-style: italic;
+  }
+
+  /* Popup (identical to Timeline version) */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .popup-overlay[hidden] { display: none; }
+
+  .popup {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .popup-close:hover { color: var(--text); background: var(--bg); }
+
+  .popup-title { font-size: 1.6rem; margin-bottom: 4px; }
+  .popup-dates { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px; }
+
+  .popup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .popup-block {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .popup-block--full { grid-column: 1 / -1; }
+
+  .popup-block-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .popup-icon { font-size: 1rem; }
+  .popup-sub { font-weight: 500; font-size: 0.9rem; margin-bottom: 4px; }
+
+  #popup-travel-details,
+  #popup-hotel-address {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  #popup-activities {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #popup-activities li {
+    font-size: 0.88rem;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  #popup-activities li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    top: 2px;
+  }
+
+  .popup-cta {
+    display: inline-block;
+    background: var(--text);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: opacity 0.15s;
+  }
+
+  .popup-cta:hover { opacity: 0.85; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .cal-layout {
+      grid-template-columns: 1fr;
+    }
+    .cal-legend {
+      position: static;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cal-months {
+      grid-template-columns: 1fr;
+    }
+    .popup-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
