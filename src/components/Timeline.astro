@@ -1,0 +1,559 @@
+---
+interface Destination {
+  slug: string;
+  name: string;
+  startDate: string;
+  endDate: string;
+  color: string;
+  travel: { from: string; method: string; details: string };
+  hotel: { name: string; address: string; notes?: string };
+  activities: { brief: string[]; detailed: any[] };
+}
+
+interface Props {
+  destinations: Destination[];
+}
+
+const { destinations } = Astro.props;
+
+const sorted = [...destinations].sort(
+  (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+);
+
+const tripStart = new Date(sorted[0].startDate);
+const tripEnd = new Date(sorted[sorted.length - 1].endDate);
+const totalDays = (tripEnd.getTime() - tripStart.getTime()) / 86400000;
+
+function pct(date: string) {
+  const d = new Date(date);
+  return ((d.getTime() - tripStart.getTime()) / 86400000 / totalDays) * 100;
+}
+
+function nights(start: string, end: string) {
+  const diff = (new Date(end).getTime() - new Date(start).getTime()) / 86400000;
+  return diff === 1 ? "1 nacht" : `${diff} nachten`;
+}
+
+function fmtDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString("nl-NL", {
+    day: "numeric",
+    month: "short",
+  });
+}
+
+const monthLabels: { label: string; pct: number }[] = [];
+const cursor = new Date(tripStart);
+cursor.setDate(1);
+cursor.setMonth(cursor.getMonth() + 1);
+while (cursor < tripEnd) {
+  monthLabels.push({
+    label: cursor.toLocaleDateString("nl-NL", { month: "long" }),
+    pct: ((cursor.getTime() - tripStart.getTime()) / 86400000 / totalDays) * 100,
+  });
+  cursor.setMonth(cursor.getMonth() + 1);
+}
+---
+
+<section class="timeline-section">
+  <div class="container">
+    <div class="trip-header">
+      <h1>Japan 2026</h1>
+      <p class="trip-dates">
+        {fmtDate(sorted[0].startDate)} &ndash; {fmtDate(tripEnd.toISOString())}
+        &nbsp;&middot;&nbsp; {totalDays} dagen
+      </p>
+    </div>
+
+    <div class="timeline-wrap">
+      <!-- Month labels -->
+      <div class="month-labels">
+        {
+          monthLabels.map((m) => (
+            <span class="month-label" style={`left: ${m.pct}%`}>
+              {m.label}
+            </span>
+          ))
+        }
+      </div>
+
+      <!-- The bar -->
+      <div class="timeline-bar">
+        {
+          sorted.map((dest) => {
+            const left = pct(dest.startDate);
+            const width = pct(dest.endDate) - left;
+            return (
+              <button
+                class="segment"
+                style={`left: ${left}%; width: ${width}%; background: ${dest.color};`}
+                data-slug={dest.slug}
+                aria-label={`${dest.name} — ${fmtDate(dest.startDate)} t/m ${fmtDate(dest.endDate)}`}
+              >
+                <span class="seg-name">{dest.name}</span>
+                <span class="seg-dates">
+                  {fmtDate(dest.startDate)} – {fmtDate(dest.endDate)}
+                </span>
+              </button>
+            );
+          })
+        }
+      </div>
+
+      <!-- Date markers at start/end -->
+      <div class="date-markers">
+        <span>{fmtDate(sorted[0].startDate)}</span>
+        <span>{fmtDate(tripEnd.toISOString())}</span>
+      </div>
+    </div>
+
+    <!-- Destination cards (mobile fallback + always-visible on small screens) -->
+    <div class="dest-cards">
+      {
+        sorted.map((dest) => (
+          <button class="dest-card" data-slug={dest.slug}>
+            <span class="card-dot" style={`background: ${dest.color}`} />
+            <div class="card-info">
+              <strong>{dest.name}</strong>
+              <span>
+                {fmtDate(dest.startDate)} – {fmtDate(dest.endDate)} &middot;{" "}
+                {nights(dest.startDate, dest.endDate)}
+              </span>
+            </div>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Popup overlay -->
+<div id="popup-overlay" class="popup-overlay" hidden>
+  <div class="popup" role="dialog" aria-modal="true">
+    <button class="popup-close" id="popup-close" aria-label="Sluiten">&times;</button>
+    <h2 id="popup-title" class="popup-title"></h2>
+    <p id="popup-dates" class="popup-dates"></p>
+
+    <div class="popup-grid">
+      <div class="popup-block">
+        <div class="popup-block-label">
+          <span class="popup-icon">✈</span> Reizen
+        </div>
+        <p id="popup-travel-method" class="popup-sub"></p>
+        <p id="popup-travel-details"></p>
+      </div>
+
+      <div class="popup-block">
+        <div class="popup-block-label">
+          <span class="popup-icon">🏨</span> Verblijf
+        </div>
+        <p id="popup-hotel-name" class="popup-sub"></p>
+        <p id="popup-hotel-address"></p>
+      </div>
+
+      <div class="popup-block popup-block--full">
+        <div class="popup-block-label">
+          <span class="popup-icon">🗺</span> Activiteiten
+        </div>
+        <ul id="popup-activities"></ul>
+      </div>
+    </div>
+
+    <a id="popup-more" href="#" class="popup-cta">Bekijk alle details &rarr;</a>
+  </div>
+</div>
+
+<!-- Destination data for JS -->
+<script
+  is:inline
+  id="dest-data"
+  type="application/json"
+  set:html={JSON.stringify(
+    sorted.map((d) => ({
+      slug: d.slug,
+      name: d.name,
+      startDate: d.startDate,
+      endDate: d.endDate,
+      travel: d.travel,
+      hotel: d.hotel,
+      activities: { brief: d.activities.brief },
+    }))
+  )}
+/>
+
+<script>
+  const data: Record<string, any> = {};
+  const raw = document.getElementById("dest-data")?.textContent;
+  if (raw) {
+    const arr = JSON.parse(raw) as any[];
+    arr.forEach((d) => (data[d.slug] = d));
+  }
+
+  const overlay = document.getElementById("popup-overlay") as HTMLElement;
+  const closeBtn = document.getElementById("popup-close") as HTMLButtonElement;
+
+  function fmtDate(str: string) {
+    return new Date(str).toLocaleDateString("nl-NL", {
+      weekday: "short",
+      day: "numeric",
+      month: "long",
+    });
+  }
+
+  function openPopup(slug: string) {
+    const d = data[slug];
+    if (!d) return;
+
+    (document.getElementById("popup-title") as HTMLElement).textContent = d.name;
+    (document.getElementById("popup-dates") as HTMLElement).textContent =
+      `${fmtDate(d.startDate)} – ${fmtDate(d.endDate)}`;
+    (document.getElementById("popup-travel-method") as HTMLElement).textContent =
+      `${d.travel.method} vanaf ${d.travel.from}`;
+    (document.getElementById("popup-travel-details") as HTMLElement).textContent =
+      d.travel.details;
+    (document.getElementById("popup-hotel-name") as HTMLElement).textContent = d.hotel.name;
+    (document.getElementById("popup-hotel-address") as HTMLElement).textContent =
+      d.hotel.address;
+
+    const ul = document.getElementById("popup-activities") as HTMLUListElement;
+    ul.innerHTML = d.activities.brief
+      .map((a: string) => `<li>${a}</li>`)
+      .join("");
+
+    const moreLink = document.getElementById("popup-more") as HTMLAnchorElement;
+    moreLink.href = `/bestemmingen/${slug}`;
+
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePopup() {
+    overlay.hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-slug]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const slug = (el as HTMLElement).dataset.slug!;
+      openPopup(slug);
+    });
+  });
+
+  closeBtn.addEventListener("click", closePopup);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closePopup();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePopup();
+  });
+</script>
+
+<style>
+  .timeline-section {
+    padding: 60px 0 40px;
+  }
+
+  .trip-header {
+    margin-bottom: 48px;
+  }
+
+  .trip-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 8px;
+  }
+
+  .trip-dates {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Timeline bar */
+  .timeline-wrap {
+    position: relative;
+    margin-bottom: 40px;
+  }
+
+  .month-labels {
+    position: relative;
+    height: 24px;
+    margin-bottom: 8px;
+  }
+
+  .month-label {
+    position: absolute;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .timeline-bar {
+    position: relative;
+    height: 64px;
+    background: var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .segment {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 12px;
+    overflow: hidden;
+    transition: filter 0.15s, transform 0.15s;
+    transform-origin: center bottom;
+  }
+
+  .segment:hover {
+    filter: brightness(1.08);
+    transform: scaleY(1.04);
+    z-index: 2;
+  }
+
+  .segment + .segment {
+    border-left: 2px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .seg-name {
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .seg-dates {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.65rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .date-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Mobile card list */
+  .dest-cards {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dest-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: box-shadow 0.15s;
+  }
+
+  .dest-card:hover {
+    box-shadow: var(--shadow);
+  }
+
+  .card-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .card-info strong {
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .card-info span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* Popup */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .popup-overlay[hidden] {
+    display: none;
+  }
+
+  .popup {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .popup-close:hover {
+    color: var(--text);
+    background: var(--bg);
+  }
+
+  .popup-title {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+  }
+
+  .popup-dates {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .popup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .popup-block {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  .popup-block--full {
+    grid-column: 1 / -1;
+  }
+
+  .popup-block-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .popup-icon {
+    font-size: 1rem;
+  }
+
+  .popup-sub {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  #popup-travel-details,
+  #popup-hotel-address {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  #popup-activities {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #popup-activities li {
+    font-size: 0.88rem;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  #popup-activities li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    top: 2px;
+  }
+
+  .popup-cta {
+    display: inline-block;
+    background: var(--text);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+  }
+
+  .popup-cta:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 640px) {
+    .timeline-bar {
+      display: none;
+    }
+
+    .month-labels,
+    .date-markers {
+      display: none;
+    }
+
+    .dest-cards {
+      display: flex;
+    }
+
+    .popup-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

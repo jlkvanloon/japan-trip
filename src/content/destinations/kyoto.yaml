@@ -1,0 +1,88 @@
+name: Kyoto
+slug: kyoto
+startDate: "2026-11-24"
+endDate: "2026-11-29"
+color: "#27AE60"
+
+travel:
+  from: Hakone
+  method: Shinkansen
+  details: |
+    Vanaf Gora neem je de kabelbaan en Hakone Ropeway terug naar Odawara Station,
+    daarna de Tokaido Shinkansen (Hikari met JR Pass) naar Kyoto, circa 1u20.
+    Reserveer stoelen van tevoren en zit rechts voor uitzicht op de Mount Fuji
+    kort na vertrek.
+
+hotel:
+  name: Richmond Hotel Premier Kyoto Shijo
+  address: Shijo-wijk, Kyoto
+  notes: |
+    Inchecken 14:00-00:00. Uitchecken 03:00-11:00. Ontbijt niet inbegrepen.
+    Centrale ligging vlak bij Shijo-Karasuma. Betaald 22 oktober: 1863 euro.
+
+activities:
+  brief:
+    - Fushimi Inari schrijn (torii-poorten)
+    - Arashiyama bamboebos & Tenryu-ji
+    - Hozugawa rivier boottocht (26 nov)
+    - Dagtocht naar Nara (27 nov)
+    - Gion-wijk bij schemering
+    - Filosofenpad & Nanzen-ji
+  detailed:
+    - name: Fushimi Inari Taisha
+      when: Dag 1 of 2 — vroege ochtend
+      description: |
+        De iconische schrijn met duizenden rode torii-poorten die omhoog kronkelen langs
+        de Mt. Inari. De volledige wandeling naar de top en terug duurt circa 2-3 uur.
+        Het onderste gedeelte is het fotogeniekst. Entree gratis, paden dag en nacht open.
+      tips: |
+        Ga voor 07:30 om de onderste poorten bijna voor jezelf te hebben.
+        Het bovenste deel van de berg blijft de hele dag rustiger.
+    - name: Arashiyama — Bamboebos & Tenryu-ji
+      when: Elke ochtend
+      description: |
+        Het bamboebos is kort (5-10 min doorlopen) maar werkelijk magisch in de vroege
+        ochtendnevel. Vlakbij ligt Tenryu-ji, een UNESCO Werelderfgoed zen-tuin met vijver
+        en bergachtergrond. Huur een fiets om ook Jojakko-ji en de heuveltemples te bereiken.
+      tips: |
+        Het bamboebos wordt na 09:00 extreem druk.
+        Tenryu-ji opent om 08:30 — kom direct bij opening. Entree tuin 500 yen.
+    - name: Hozugawa Rivier Boottocht
+      when: 26 november, donderdag — 09:00
+      description: |
+        Een 2 uur durende schilderachtige boottocht van Kameoka door de Hozugawa-kloof
+        naar Arashiyama, gevaren door ervaren schippers langs beboste rotswanden.
+        In late november is de herfstkleuring langs de kloof spectaculair.
+      tips: |
+        Boek tickets van tevoren online via hozugawakudari.co.jp.
+        De boot arriveert in Arashiyama — combineer met het bamboebos op dezelfde dag.
+        Kleed je warm — het kan koud zijn op het water.
+    - name: Dagtocht naar Nara
+      when: 27 november, vrijdag — hele dag
+      description: |
+        Slechts 45 minuten van Kyoto per trein (Kintetsu Line vanuit Kyoto Station).
+        Nara Park heeft meer dan 1000 vrijlopende herten die buigen voor hertenkoekjes.
+        De gigantische bronzen Boeddha in Todai-ji is de grootste van Japan.
+        Mis Kasuga Taisha schrijn niet met zijn honderden stenen lantaarns.
+      tips: |
+        Koop hertenkoekjes bij verkopers buiten het park (200 yen).
+        De herten kunnen opdringerig zijn — houd de koekjes omhoog tot je er klaar voor bent.
+        Todai-ji entree: 600 yen.
+    - name: Gion & Hanamikoji bij schemering
+      when: Elke avond
+      description: |
+        Loop door Hanamikoji-dori als de schemering valt — traditionele machiya stadshuizen
+        met warme lantaarnverlichting, theehuizen, en af en toe een geiko of maiko.
+        Eindig de avond in Pontocho, het parallelle steegje vol restaurants aan de Kamo-rivier.
+      tips: |
+        Fotografeer mensen in Gions smalle stegen niet zonder toestemming.
+        De stad heeft boetes ingevoerd voor bepaald toeristengedrag in dit gebied.
+    - name: Filosofenpad & Nanzen-ji
+      when: Elke ochtend
+      description: |
+        Een 2km lang kasseipad langs een kanaal tussen Ginkaku-ji (Zilveren Paviljoen)
+        en Nanzen-ji, omzoomd met kers- en ahornbomen. In late november kan de resterende
+        herfstkleuring verbluffend zijn. Eindig bij de massieve houten sanmon-poort van Nanzen-ji.
+      tips: |
+        Het Zilveren Paviljoen zelf is wat tegenvallend — de mossentuin is het hoogtepunt.
+        Nanzen-ji is gratis te betreden; de sanmon en subtempels hebben kleine entreeprijzen.

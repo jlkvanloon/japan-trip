@@ -1,0 +1,67 @@
+name: Hiroshima
+slug: hiroshima
+startDate: "2026-11-29"
+endDate: "2026-11-30"
+color: "#8E44AD"
+
+travel:
+  from: Kyoto
+  method: Shinkansen
+  details: |
+    Nozomi of Hikari Shinkansen van Kyoto naar Hiroshima, circa 1 uur.
+    Met JR Pass neem je de Hikari (Nozomi vereist toeslag).
+
+hotel:
+  name: KIRO Hiroshima by THE SHARE HOTELS
+  address: Hiroshima
+  notes: |
+    Inchecken 15:00-23:00. Uitchecken tot 10:00.
+    Ontbijt niet inbegrepen. Betaald 23 november: 244 euro.
+
+activities:
+  brief:
+    - Vredesgedenkteken & Museum
+    - Atoombom Koepel (UNESCO Werelderfgoed)
+    - Miyajima Island & drijvende torii-poort
+    - Hiroshima-stijl okonomiyaki
+  detailed:
+    - name: Vredesgedenkteken & Museum
+      when: Dag 1 — ochtend
+      description: |
+        Het epicentrum van de atoombomaanval van 1945 is nu een herdenkingspark.
+        Het Vredesmuseum is diep ontroerend en essentieel — reken op 2 uur.
+        Het Kindermonument (papieren kraanvogels) en de Vredesvlam liggen vlakbij.
+      tips: |
+        Het museum kan emotioneel zwaar zijn — geef jezelf tijd en ruimte na het bezoek.
+        Audiogidsen beschikbaar in het Nederlands/Engels. Entree: 200 yen.
+    - name: Atoombom Koepel (Genbaku Dome)
+      when: Dag 1 — naast het park
+      description: |
+        Het skeletachtige ijzeren koepeldak van het voormalige Industrieel Promotiegebouw,
+        achtergelaten zoals het stond na de bom, is een van de meest aangrijpende plekken
+        ter wereld. UNESCO Werelderfgoedsite.
+      tips: |
+        Vrij te bezichtigen van buiten.
+        De weerspiegeling in de rivier geeft een krachtige foto.
+    - name: Miyajima Island & Itsukushima Schrijn
+      when: Dag 1 — middag of Dag 2 ochtend
+      description: |
+        Neem de JR-veerboot (15 min, inbegrepen bij JR Pass) naar Miyajima Island.
+        De beroemde drijvende torii-poort van Itsukushima Schrijn is een van Japan's
+        "Drie Uitzichten." Bij hoogwater lijkt de poort op het water te drijven.
+        Herten lopen hier ook vrij. Wandel op Mt. Misen voor panoramisch uitzicht.
+      tips: |
+        Controleer getijden van tevoren — hoogwater is het fotogeniekst.
+        Het eiland is klein genoeg om te voet te verkennen.
+        Laatste boot terug is rond 22:00.
+    - name: Hiroshima-stijl Okonomiyaki
+      when: Elke maaltijd
+      description: |
+        Hiroshima-stijl okonomiyaki is een gelaagde hartige pannenkoek met yakisoba
+        noedels, kool, ei en je keuze aan toppings — heel anders dan Osaka-stijl.
+        Ga naar Okonomi-mura ("Okonomiyaki Dorp"), een gebouw met circa 25 restaurants
+        op meerdere verdiepingen.
+      tips: |
+        Wijs naar het menu of vraag om "Hiroshima-style" met varkensvlees en ei.
+        Kijk hoe de kok het bereidt op de teppan voor je neus.
+        Budget 1000-1500 yen per persoon.

@@ -1,0 +1,67 @@
+name: Tokyo (Asakusa)
+slug: tokyo-asakusa
+startDate: "2026-12-03"
+endDate: "2026-12-06"
+color: "#C0392B"
+
+travel:
+  from: Osaka
+  method: Shinkansen
+  details: |
+    Nozomi Shinkansen van Shin-Osaka naar Tokyo Station, ongeveer 2u30.
+    Met JR Pass neem je de Hikari (toeslag op Nozomi).
+    Van Tokyo Station neem je de metro naar Asakusa, ongeveer 20 minuten.
+
+hotel:
+  name: APA Hotel Asakusa Kuramae Kita
+  address: Asakusa, Tokyo
+  notes: |
+    Inchecken 15:00-00:00. Uitchecken tot 10:00.
+    Ontbijt niet inbegrepen. Betaald 29 november: 657 euro.
+
+activities:
+  brief:
+    - Sumo show met diner bij Asakusa Sumo Club (3 dec)
+    - Asakusa, Ueno & Akihabara (4 dec)
+    - Tsukiji markt, Ginza, Tokyo Tower & TeamLab (5 dec)
+    - Vlucht terug naar Amsterdam (6 dec)
+  detailed:
+    - name: Sumo Show met Diner — Asakusa Sumo Club
+      when: 3 december — avond (aankomstdag)
+      description: |
+        Een unieke avond bij de Asakusa Sumo Club: echte sumo-worstelaars geven een
+        demonstratie en daarna eet je samen een traditioneel chankonabe (stoofpot die
+        sumoworstelaars eten). Een perfecte afsluiter van de reis.
+      tips: |
+        Reservering is al geregeld. Kom op tijd — de avond heeft een vaste tijdsindeling.
+        Neem foto's met de sumostrijders na de voorstelling.
+    - name: Asakusa, Ueno & Akihabara
+      when: 4 december — hele dag
+      description: |
+        Begin bij Senso-ji tempel, de oudste tempel van Tokyo met de indrukwekkende
+        Kaminarimon (Donderpoort). Loop door de Nakamise-dori souvenirsstraat.
+        Ga daarna naar Ueno voor het park en het National Museum.
+        Eindig in Akihabara, het elektronica- en anime-district.
+      tips: |
+        Senso-ji is 's avonds ook mooi verlicht — overweeg een tweede bezoek na het eten.
+        In Akihabara zijn de multi-floor game arcades een ervaring op zich.
+    - name: Tsukiji Markt, Ginza, Tokyo Tower & TeamLab
+      when: 5 december — hele dag
+      description: |
+        Begin vroeg op de Tsukiji buitenmarkt voor verse sushi- en sashimi-ontbijten bij
+        de kraampjes. Loop daarna door Ginza voor luxewinkels en architectuur.
+        Bezoek Tokyo Tower in de middag en sluit de dag af bij TeamLab Planets of Borderless,
+        een meeslepende digitale kunstinstallatie.
+      tips: |
+        Tsukiji buitenmarkt opent rond 05:00, piektijd voor sushi-ontbijt is 07:00-09:00.
+        TeamLab moet je ruim van tevoren online boeken — kaartjes zijn essentieel.
+        Draag comfortabele schoenen voor de lange dag.
+    - name: Terugvlucht naar Amsterdam
+      when: 6 december
+      description: |
+        KLM KL862 vertrekt om 13:35 vanaf Narita Airport (NRT) en arriveert om 19:40
+        in Amsterdam. Vluchtduur: 14u05. Economy Comfort klasse.
+        Bagage: 2x handbagage, 2x kleine tas, 1x ruimbagage (23 kg).
+      tips: |
+        Narita ligt ver buiten de stad — reken minimaal 2 uur reistijd van Asakusa.
+        Vertrek uiterlijk om 09:00 vanuit het hotel. Uitchecken voor 10:00.

@@ -1,0 +1,76 @@
+name: Hakone
+slug: hakone
+startDate: "2026-11-23"
+endDate: "2026-11-24"
+color: "#2980B9"
+
+travel:
+  from: Tokyo (Shinjuku)
+  method: Trein (Hakone Freepass)
+  details: |
+    Neem de Odakyu Romance Car van Shinjuku naar Hakone-Yumoto (circa 90 minuten,
+    reserveer een stoel van tevoren). Koop de Hakone Freepass — dit dekt alle vervoer
+    op de Hakone Loop inclusief de Romance Car.
+    Laat je koffers achter bij de Hakone Luggage Transport Service in Hakone-Yumoto
+    Station (open 08:30-12:00) — ze worden voor 15:00 bij het hotel bezorgd.
+
+hotel:
+  name: Mount View Hakone
+  address: Hakone, Kanagawa
+  notes: |
+    Inchecken 15:00-19:00. Uitchecken 07:30-10:00. Ontbijt en diner inbegrepen.
+    Geef dieetwensen vooraf door. Reserveer de Prive Onsen van tevoren bij het hotel.
+    Betaald 19 november: 232 euro.
+
+activities:
+  brief:
+    - Hakone Loop per bus, kabelbaan & piratenschip
+    - Hakone Shrine met torii-poort in het meer
+    - Owakudani vulkanisch dal & zwarte eieren
+    - Prive onsen & ryokan-diner
+  detailed:
+    - name: Amazake Theehuis
+      when: Dag 1 — ochtend
+      description: |
+        Na het afleveren van de koffers bij Hakone-Yumoto, neem je de K-bus (20-25 min)
+        naar een van Japan's oudste theehuizen, ruim 400 jaar oud.
+        De zoete amazake rijstdrank is het toonaangevende product hier.
+      tips: |
+        De bus valt onder je Hakone Freepass.
+        Neem cash mee voor het theehuis.
+    - name: Hakone Shrine
+      when: Dag 1 — late ochtend
+      description: |
+        Ga verder met de K-bus (5-10 min meer) naar Moto-Hakone, dan 10-15 minuten lopen
+        naar de Hakone Shrine. De beroemde rode torii-poort staat in het Ashi-meer met
+        bergen erachter — een van de meest gefotografeerde plekken van Japan.
+      tips: |
+        Mistige ochtenden maken de torii-poort extra sfeervol.
+        Spiegeling in het meer geeft de klassieke foto.
+    - name: Piratenschip over Lake Ashi
+      when: Dag 1 — middag
+      description: |
+        Neem het piratenschip (Hakone Sightseeing Cruise) van Moto-Hakone naar Togendai
+        (25 minuten). Op heldere dagen torens de Mount Fuji direct voor je uit.
+        Inbegrepen bij de Hakone Freepass.
+      tips: |
+        Zit op het bovendek aan de rechterkant voor het beste Fuji-uitzicht
+        op weg naar Togendai.
+    - name: Owakudani Vulkanisch Dal
+      when: Dag 1 — middag
+      description: |
+        Neem de Hakone Ropeway vanaf Togendai en stap uit bij Owakudani — een actief
+        vulkanisch gebied met zwaveldampen, kokende modderpools en uitzicht op de Fuji.
+        Probeer de beroemde kuro-tamago (zwart hardgekookte eieren in zwavelbronnen).
+      tips: |
+        De kabelbaan kan bij harde wind gesloten zijn — check de omstandigheden.
+        De geur van zwavel is sterk bij het observatiedek.
+    - name: Prive Onsen & Ryokan-diner
+      when: Dag 1 — avond
+      description: |
+        Aankomst bij Mount View Hakone voor het hoogtepunt van het verblijf — een
+        traditionele ryokan-ervaring met kaiseki-diner en prive buiten-onsen.
+        Geniet van het mineraalrijke warmwaterbassin met bergzicht.
+      tips: |
+        Reserveer de prive onsen (roten-buro) van tevoren via het hotel.
+        Het diner wordt doorgaans op de kamer of in een aparte eetruimte geserveerd.

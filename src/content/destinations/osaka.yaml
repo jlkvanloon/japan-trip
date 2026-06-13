@@ -1,0 +1,66 @@
+name: Osaka
+slug: osaka
+startDate: "2026-11-30"
+endDate: "2026-12-03"
+color: "#E67E22"
+
+travel:
+  from: Hiroshima
+  method: Shinkansen
+  details: |
+    Nozomi of Hikari Shinkansen van Hiroshima naar Shin-Osaka, ongeveer 1 uur.
+    Met de JR Pass neem je de Hikari (Nozomi vereist toeslag).
+    Van Shin-Osaka neem je de metro naar het centrum.
+
+hotel:
+  name: Hotel Noum OSAKA
+  address: Osaka
+  notes: |
+    Inchecken 15:00-23:00. Uitchecken tot 11:00.
+    Ontbijt niet inbegrepen. Betaald 24 november: 544 euro.
+
+activities:
+  brief:
+    - Universal Studios Japan (1 december)
+    - Dotonbori & streetfood
+    - Osaka Castle
+    - Kuromon Ichiba markt
+  detailed:
+    - name: Universal Studios Japan
+      when: 1 december — hele dag
+      description: |
+        Universal Express Pass 7 met Minecart-rit (Mario Kart) en 6 andere attracties
+        geselecteerd. Het park is groot — plan vooraf welke attracties prioriteit hebben.
+        The Wizarding World of Harry Potter en Super Nintendo World zijn de hoogtepunten.
+      tips: |
+        Universal Express Pass slaan normale wachtrijen over — ga direct naar Mario Kart.
+        Neem vroeg de tram (voor 09:00) om op tijd bij de poort te zijn.
+        Eten in het park is duur — neem snacks mee of eet bij de poort.
+    - name: Dotonbori & Streetfood
+      when: Elke avond
+      description: |
+        De bruisende neonverlichte kanaalwijk van Osaka, het hart van de eetcultuur.
+        Probeer takoyaki (octopusballetjes), okonomiyaki en kushikatsu.
+        Het enorme draaiende Glico Man bord is het meest gefotografeerde punt van Osaka.
+      tips: |
+        Osaka staat bekend als "de keuken van Japan" — eet zoveel mogelijk.
+        Kushikatsu: dip nooit twee keer in de saus — dit is een heilige lokale regel.
+    - name: Osaka Castle & Park
+      when: Ochtend
+      description: |
+        Het monumentale witte kasteel met gouden details, herbouwd in 1931, staat in een
+        groot park. Het museum binnen vertelt de geschiedenis van Toyotomi Hideyoshi.
+        In het late najaar is het park mooi met herfstkleuren.
+      tips: |
+        Het park is gratis, het kasteel zelf kost 600 yen.
+        De top verdieping heeft panoramisch uitzicht over de stad.
+    - name: Kuromon Ichiba Markt
+      when: Ochtend
+      description: |
+        De "keuken van Osaka" — een overdekte markt van 170 meter lang met verse vis, vlees,
+        producten en streetfood kraampjes. Ideaal voor een ochtendwandeling met hapjes:
+        verse sashimi, gegrilde sint-jakobsschelpen, tamagoyaki.
+      tips: |
+        Ga op een weekdag voor de beste sfeer.
+        De markt is 's ochtends het levendigst (rond 09:00-11:00).
+        Neem cash mee — veel stalletjes accepteren geen kaart.

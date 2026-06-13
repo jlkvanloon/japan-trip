@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: nl
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: destinations
+    label: Bestemmingen
+    label_singular: Bestemming
+    folder: src/content/destinations
+    extension: yaml
+    format: yaml
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    fields:
+      - { label: Naam, name: name, widget: string }
+      - { label: Slug (URL), name: slug, widget: string }
+      - { label: Startdatum, name: startDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false }
+      - { label: Einddatum, name: endDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD-MM-YYYY", time_format: false }
+      - { label: Kleur (tijdlijn), name: color, widget: color }
+
+      - label: Reizen
+        name: travel
+        widget: object
+        fields:
+          - { label: Vertrek vanuit, name: from, widget: string }
+          - { label: Vervoerstype, name: method, widget: string, hint: "Bijv. Vliegtuig, Shinkansen, Trein" }
+          - { label: Details, name: details, widget: text }
+
+      - label: Verblijf
+        name: hotel
+        widget: object
+        fields:
+          - { label: Naam hotel, name: name, widget: string }
+          - { label: Adres, name: address, widget: string }
+          - { label: Notities, name: notes, widget: text, required: false }
+
+      - label: Activiteiten
+        name: activities
+        widget: object
+        fields:
+          - label: Kort overzicht (popup)
+            name: brief
+            widget: list
+            field: { label: Activiteit, name: item, widget: string }
+
+          - label: Uitgebreid (detailpagina)
+            name: detailed
+            widget: list
+            fields:
+              - { label: Naam, name: name, widget: string }
+              - { label: Wanneer, name: when, widget: string, hint: "Bijv. Dag 1 — ochtend" }
+              - { label: Beschrijving, name: description, widget: text }
+              - { label: Tips, name: tips, widget: text, required: false }
