@@ -1,6 +1,12 @@
 ---
 import { theme } from '../config/theme';
 
+interface DagEntry {
+  titel: string;
+  content?: string;
+  subsections?: { titel: string; beschrijving: string }[];
+}
+
 interface Destination {
   slug: string;
   name: string;
@@ -9,6 +15,7 @@ interface Destination {
   travel: { titel: string; from: string; method: string }[];
   hotel: { name: string; url?: string };
   activities: { brief: string[]; detailed: any[] };
+  dagplanning?: DagEntry[];
 }
 
 const PALETTE = theme.palette;
@@ -133,6 +140,12 @@ function fmtShort(dateStr: string) {
 }
 ---
 
+<section id="today-plan" class="today-plan-section" hidden>
+  <div class="container">
+    <div id="today-plan-content"></div>
+  </div>
+</section>
+
 <section class="cal-section">
   <div class="container">
 
@@ -176,6 +189,7 @@ function fmtShort(dateStr: string) {
                       class:list={["cal-day", day.dest ? "cal-day--trip" : "cal-day--off", isTravel && "cal-day--travel"]}
                       style={cellStyle}
                       data-slug={day.dest?.slug}
+                      data-date={day.dateStr}
                       disabled={!day.dest}
                       aria-label={day.dest ? `${day.date.getDate()} ${day.monthLabel} — ${day.dest.name}` : `${day.date.getDate()} ${day.monthLabel}`}
                     >
@@ -227,9 +241,11 @@ function fmtShort(dateStr: string) {
     name: d.name,
     startDate: d.startDate,
     endDate: d.endDate,
+    color: destColor.get(d.slug),
     travel: d.travel,
     hotel: d.hotel,
-    activities: { brief: d.activities.brief },
+    activities: { brief: d.activities?.brief ?? [] },
+    dagplanning: d.dagplanning ?? [],
   }))
 )} />
 
@@ -281,9 +297,126 @@ function fmtShort(dateStr: string) {
   document.getElementById("popup-close")!.addEventListener("click", closePopup);
   overlay.addEventListener("click", (e) => { if (e.target === overlay) closePopup(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closePopup(); });
+
+  // Today highlight + day plan
+  (function () {
+    const t = new Date();
+    const todayStr = t.getFullYear() + "-" +
+      String(t.getMonth() + 1).padStart(2, "0") + "-" +
+      String(t.getDate()).padStart(2, "0");
+
+    // Highlight the cell
+    const todayCell = document.querySelector(`[data-date="${todayStr}"]`) as HTMLElement | null;
+    if (todayCell) todayCell.classList.add("cal-day--today");
+
+    // Find today's destination
+    const dests = Object.values(data) as any[];
+    const todayDest = dests.find((d) => todayStr >= d.startDate && todayStr < d.endDate);
+    if (!todayDest || !todayDest.dagplanning?.length) return;
+
+    // Day index within destination
+    function parseLocal(s: string) {
+      const [y, m, d] = s.split("-").map(Number);
+      return new Date(y, m - 1, d).getTime();
+    }
+    const dayIdx = Math.round((parseLocal(todayStr) - parseLocal(todayDest.startDate)) / 86400000);
+    const dagEntry = todayDest.dagplanning[dayIdx];
+    if (!dagEntry) return;
+
+    // Overall trip day number
+    const tripStart = dests.slice().sort((a, b) => a.startDate < b.startDate ? -1 : 1)[0].startDate;
+    const tripDay = Math.round((parseLocal(todayStr) - parseLocal(tripStart)) / 86400000) + 1;
+
+    const bodyHtml = dagEntry.subsections?.length
+      ? (dagEntry.subsections as any[]).map((s: any) =>
+          `<div class="today-sub"><h4 class="today-sub-title">${s.titel}</h4><p class="today-sub-desc">${s.beschrijving}</p></div>`
+        ).join("")
+      : dagEntry.content
+        ? `<p class="today-sub-desc">${dagEntry.content}</p>`
+        : "";
+
+    const planContent = document.getElementById("today-plan-content") as HTMLElement;
+    planContent.innerHTML =
+      `<div class="today-card" style="--dest-color:${todayDest.color}">` +
+        `<div class="today-card-header">` +
+          `<span class="today-card-dest">${todayDest.name}</span>` +
+          `<span class="today-card-day">Dag ${tripDay} &middot; ${dagEntry.titel}</span>` +
+        `</div>` +
+        `<div class="today-card-body">${bodyHtml}</div>` +
+      `</div>`;
+
+    (document.getElementById("today-plan") as HTMLElement).hidden = false;
+  })();
 </script>
 
 <style>
+  .today-plan-section {
+    padding: 32px 0 0;
+  }
+
+  .today-plan-section .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .today-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--dest-color, var(--accent));
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .today-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 20px;
+    background: color-mix(in srgb, var(--dest-color, var(--accent)) 10%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .today-card-dest {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dest-color, var(--accent));
+  }
+
+  .today-card-day {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .today-card-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .today-sub {
+    padding-left: 12px;
+    border-left: 2px solid color-mix(in srgb, var(--dest-color, var(--accent)) 40%, transparent);
+  }
+
+  .today-sub-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--dest-color, var(--accent));
+    margin-bottom: 2px;
+  }
+
+  .today-sub-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
   .cal-section {
     padding: 32px 0 12px;
   }
