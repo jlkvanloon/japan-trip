@@ -116,6 +116,7 @@ const { title, description = "Onze reis door Japan — november / december 2026"
         var error = document.getElementById('gate-error');
 
         function unlock() {
+          input.blur();
           localStorage.setItem('japan-unlocked', '1');
           localStorage.setItem('japan-unlocked-at', Date.now().toString());
           gate.classList.add('gate--out');
