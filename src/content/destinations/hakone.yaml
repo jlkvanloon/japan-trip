@@ -5,7 +5,8 @@ endDate: 2026-11-24
 travel:
   - titel: Trein naar Hakone
     from: Tokyo (Shinjuku)
-    method: Trein (Inbegrepen bij Hakone Freepass)
+    method: "Trein: Romancecar of Odakyu Odawara Line (laatste inbegrepen bij Hakone
+      freepass)"
     duur: ~90 min
 hotel:
   name: Mount View Hakone
@@ -14,6 +15,7 @@ hotel:
   checkOut: 07:30 – 10:00
   breakfast: Ontbijt & diner inbegrepen
   payment: €232 betalen op 19 november (J&S)
+  opmerkingen: Vooraf dieetwensen doorgeven en voor 18:00 aanwezig i.v.m. diner
 restaurants:
   - name: Mount View Hakone (diner)
     type: Kaiseki
@@ -29,6 +31,9 @@ activities:
     - Onsen & ryokan-diner
 todos:
   - Hakone freepass kopen
+  - Prive onsen reserveren (indien mogelijk)
+  - Hakone luggage transport service reserveren (tussen 08.30 en 12.00 brengen
+    bij Hakone-Yumoto station, na 15.00 bij hotel)
 dagplanning:
   - titel: Hakone Loop & Onsen
     content: >
