@@ -119,7 +119,10 @@ const { title, description = "Onze reis door Japan — november / december 2026"
           localStorage.setItem('japan-unlocked', '1');
           localStorage.setItem('japan-unlocked-at', Date.now().toString());
           gate.classList.add('gate--out');
-          gate.addEventListener('transitionend', function () { gate.remove(); }, { once: true });
+          gate.addEventListener('transitionend', function () {
+            gate.remove();
+            window.scrollTo(0, 0);
+          }, { once: true });
         }
 
         input.addEventListener('input', function () {
