@@ -56,16 +56,17 @@ const { title, description = "Onze reis door Japan — november / december 2026"
         </div>
         <p class="gate-sub">私たちの旅</p>
         <form id="gate-form" class="gate-form">
-          <input
-            id="gate-input"
-            type="password"
-            class="gate-input"
-            placeholder="wachtwoord"
-            autocomplete="off"
-            autofocus
-          />
-          <button type="submit" class="gate-btn">Open</button>
-          <p id="gate-error" class="gate-error" hidden>Onjuist wachtwoord — probeer opnieuw</p>
+          <div class="gate-field">
+            <input
+              id="gate-input"
+              type="password"
+              class="gate-input"
+              placeholder="wachtwoord"
+              autocomplete="off"
+              autofocus
+            />
+            <p id="gate-error" class="gate-error" hidden>Onjuist wachtwoord</p>
+          </div>
         </form>
       </div>
     </div>
@@ -304,7 +305,12 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0;
+  }
+
+  .gate-field {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
   .gate-input {
@@ -320,7 +326,7 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     padding: 14px 24px;
     text-align: center;
     transition: border-color 0.2s, background 0.2s;
-    width: 240px;
+    width: 300px;
   }
 
   .gate-input::placeholder {
@@ -333,33 +339,12 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     border-color: rgba(255, 255, 255, 0.6);
   }
 
-  .gate-btn {
-    margin-top: 14px;
-    width: 240px;
-    padding: 13px 0;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: var(--radius);
-    color: #fff;
-    font-family: "Shippori Mincho", serif;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .gate-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.6);
-  }
-
   .gate-error {
     color: rgba(255, 210, 200, 0.9);
     font-family: "Noto Sans JP", sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 300;
-    margin-top: 14px;
+    white-space: nowrap;
     letter-spacing: 0.02em;
   }
 
