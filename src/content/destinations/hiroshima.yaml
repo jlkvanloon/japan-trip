@@ -1,40 +1,38 @@
 name: Hiroshima
 slug: hiroshima
-startDate: "2026-11-29"
-endDate: "2026-11-30"
-
+startDate: 2026-11-29
+endDate: 2026-11-30
 travel:
   - titel: Shinkansen naar Hiroshima
     from: Kyoto
     method: Shinkansen
-    duur: "~1 uur"
-
+    duur: ~90 min
 hotel:
   name: KIRO Hiroshima by THE SHARE HOTELS
-  url: ""
-  checkIn: "15:00 – 23:00"
-  checkOut: "voor 10:00"
+  url: https://www.booking.com/searchresults.nl.html?aid=318615&label=New_English_EN_NL_21458572105-x243W0ok824Lpg0edLhuowS217274904446%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg&gclid=CjwKCAjwxb7RBhA5EiwAQ-AAdBpqa3wKffFIUggPPPNx19Sv3Znd0j0VN8FakYZaoSsvxbA6lOLkNRoCk_UQAvD_BwE&highlighted_hotels=5169085&checkin=2026-10-10&redirected=1&city=-229436&hlrd=with_av&source=hotel&checkout=2026-10-11&keep_landing=1&sid=b698f1489f33d87b64339af256556473
+  checkIn: 15:00 – 23:00
+  checkOut: voor 10:00
   breakfast: Niet inbegrepen
-  payment: "€244 — betaald 23 november"
-
-restaurants:
-  - name: Okonomi-mura
-    type: Okonomiyaki (Hiroshima-stijl)
-    notes: Gebouw met 25 restaurants op meerdere verdiepingen. Verdieping 2 en 3 het best.
-  - name: Kakifuku
-    type: Oesters
-    notes: Hiroshima is Japan's oesterhoofdstad. Gegrild, rauw of gebakken.
-  - name: Nagataya
-    type: Okonomiyaki
-    notes: Befaamd adres voor Hiroshima-stijl okonomiyaki. Zit aan de teppan-bar.
-
+  payment: €244 betalen op 23 november
+restaurants: []
 activities:
   brief:
     - Vredesgedenkteken & Museum
     - Atoombom Koepel (UNESCO Werelderfgoed)
     - Miyajima Island & drijvende torii-poort
-
 dagplanning:
-  - titel: Hiroshima & Miyajima
-    content: |
-      Ochtend: Vredesgedenkteken Park — Genbaku Dome (UNESCO, achtergelaten zoals na de bom), Kindermonument met papieren kraanvogels, Vredesvlam. Vredesmuseum is essentieel, reken op 2 uur. Middag: JR-veerboot (15 min, inbegrepen JR Pass) naar Miyajima Island. Itsukushima Schrijn met drijvende torii-poort — bij hoogwater lijkt de poort op het water te drijven. Vrije herten lopen ook op het eiland. Avond Okonomi-mura voor Hiroshima-stijl okonomiyaki.
+  - titel: "Hiroshima "
+    content: >
+      Na aankomst in het hotel gaan we naar het Peace Memorial Park en museum
+      waarna we okonomiyaki dineren in het centrum van Hiroshima.
+
+
+      Middag: JR-veerboot (15 min, inbegrepen JR Pass) naar Miyajima Island. Itsukushima Schrijn met drijvende torii-poort — bij hoogwater lijkt de poort op het water te drijven. Vrije herten lopen ook op het eiland. Avond Okonomi-mura voor Hiroshima-stijl okonomiyaki.
+  - titel: Miyajima
+    content: We vertrekken via het Hiroshima Station (waar we onze koffers in
+      lockers kunnen doen) naar Miyajima. DIt is een eiland met vrij rondlopende
+      herten, mooie natuur en een drijvende torii-poort. De bezienswaardigheden
+      zijn de Itsukushima-schrijn, daisho-in tempel, momiji-dani-koen park,
+      mount misen, omotesando shopping street en de goju-no-to pagode. We
+      vertrekken hier rond 17.00 weer om onze koffers op te halen en de
+      shinkansen naar Osaka te pakken (~90 min).
