@@ -9,7 +9,7 @@ travel:
     duur: ~3 uur
   - titel: Dagtrip Nara
     from: Kyoto
-    duur: 45min.
+    duur: ~45min
     method: Trein
 hotel:
   name: Richmond Hotel Premier Kyoto Shijo
