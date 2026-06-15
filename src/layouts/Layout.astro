@@ -34,9 +34,16 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     `} />
     <!-- Hide gate immediately for already-authenticated visitors -->
     <script is:inline>
-      if (localStorage.getItem('japan-unlocked') === '1') {
-        document.documentElement.classList.add('unlocked');
-      }
+      (function () {
+        var FIFTEEN_MIN = 15 * 60 * 1000;
+        var unlockedAt = parseInt(localStorage.getItem('japan-unlocked-at') || '0', 10);
+        if (localStorage.getItem('japan-unlocked') === '1' && Date.now() - unlockedAt < FIFTEEN_MIN) {
+          document.documentElement.classList.add('unlocked');
+        } else {
+          localStorage.removeItem('japan-unlocked');
+          localStorage.removeItem('japan-unlocked-at');
+        }
+      })();
     </script>
   </head>
   <body>
@@ -108,6 +115,7 @@ const { title, description = "Onze reis door Japan — november / december 2026"
 
         function unlock() {
           localStorage.setItem('japan-unlocked', '1');
+          localStorage.setItem('japan-unlocked-at', Date.now().toString());
           gate.classList.add('gate--out');
           gate.addEventListener('transitionend', function () { gate.remove(); }, { once: true });
         }
