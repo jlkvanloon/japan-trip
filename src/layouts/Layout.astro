@@ -122,6 +122,12 @@ const { title, description = "Onze reis door Japan — november / december 2026"
           gate.addEventListener('transitionend', function () { gate.remove(); }, { once: true });
         }
 
+        input.addEventListener('input', function () {
+          if (input.value === 'korte') {
+            unlock();
+          }
+        });
+
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           if (input.value === 'korte') {
@@ -339,7 +345,7 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     border-color: rgba(255, 255, 255, 0.6);
   }
 
-  .gate-error {
+.gate-error {
     color: rgba(255, 210, 200, 0.9);
     font-family: "Noto Sans JP", sans-serif;
     font-size: 0.75rem;
