@@ -13,7 +13,7 @@ hotel:
   checkIn: 15:00 – 19:00
   checkOut: 07:30 – 10:00
   breakfast: Ontbijt & diner inbegrepen
-  payment: €232 betalen op 19 november
+  payment: €232 betalen op 19 november (J&S)
 restaurants:
   - name: Mount View Hakone (diner)
     type: Kaiseki
@@ -21,15 +21,14 @@ restaurants:
   - name: Amazake Tea House
     type: Theehuis
     notes: 400 jaar oud theehuis. Zoete amazake rijstdrank en mochi. Alleen lunch.
-  - name: Hakone Beer
-    type: Bier & snacks
-    notes: Klein brouwerij-restaurant in Hakone-Yumoto met lokale craft bieren.
 activities:
   brief:
     - Hakone Loop per bus, kabelbaan & piratenschip
     - Hakone Shrine met torii-poort in het meer
     - Owakudani vulkanisch dal & zwarte eieren
     - Onsen & ryokan-diner
+todos:
+  - Hakone freepass kopen
 dagplanning:
   - titel: Hakone Loop & Onsen
     content: >
