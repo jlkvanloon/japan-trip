@@ -32,8 +32,36 @@ const { title, description = "Onze reis door Japan — november / december 2026"
         --radius-lg:   16px;
       }
     `} />
+    <!-- Hide gate immediately for already-authenticated visitors -->
+    <script is:inline>
+      if (localStorage.getItem('japan-unlocked') === '1') {
+        document.documentElement.classList.add('unlocked');
+      }
+    </script>
   </head>
   <body>
+    <!-- Entrance gate -->
+    <div id="gate" class="gate" aria-label="Toegangsscherm" role="dialog">
+      <div class="gate-inner">
+        <div class="gate-logo">
+          <span class="gate-kanji">日本</span>
+          <span class="gate-title">Japan 2026</span>
+        </div>
+        <p class="gate-sub">私たちの旅</p>
+        <form id="gate-form" class="gate-form">
+          <input
+            id="gate-input"
+            type="password"
+            class="gate-input"
+            placeholder="wachtwoord"
+            autocomplete="off"
+            autofocus
+          />
+          <p id="gate-error" class="gate-error" hidden>Onjuist wachtwoord — probeer opnieuw</p>
+        </form>
+      </div>
+    </div>
+
     <header>
       <div class="container">
         <a href="/" class="logo">
@@ -71,6 +99,34 @@ const { title, description = "Onze reis door Japan — november / december 2026"
       }
     </script>
 
+    <script is:inline>
+      (function () {
+        var gate  = document.getElementById('gate');
+        var form  = document.getElementById('gate-form');
+        var input = document.getElementById('gate-input');
+        var error = document.getElementById('gate-error');
+
+        function unlock() {
+          localStorage.setItem('japan-unlocked', '1');
+          gate.classList.add('gate--out');
+          gate.addEventListener('transitionend', function () { gate.remove(); }, { once: true });
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (input.value === 'korte') {
+            unlock();
+          } else {
+            error.hidden = false;
+            input.value = '';
+            input.classList.add('gate-input--shake');
+            input.addEventListener('animationend', function () {
+              input.classList.remove('gate-input--shake');
+            }, { once: true });
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
 
@@ -174,4 +230,118 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     color: var(--text);
   }
 
+  /* Gate */
+
+  html.unlocked #gate {
+    display: none;
+  }
+
+  .gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--accent-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease;
+  }
+
+  .gate--out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .gate-inner {
+    text-align: center;
+    color: #fff;
+    padding: 24px;
+  }
+
+  .gate-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  .gate-kanji {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 2.8rem;
+    font-weight: 500;
+    opacity: 0.85;
+    line-height: 1;
+  }
+
+  .gate-title {
+    font-family: "Shippori Mincho", serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .gate-sub {
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.2em;
+    margin-bottom: 52px;
+  }
+
+  .gate-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .gate-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius);
+    color: #fff;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    outline: none;
+    padding: 14px 24px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+    width: 240px;
+  }
+
+  .gate-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.06em;
+  }
+
+  .gate-input:focus {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .gate-error {
+    color: rgba(255, 210, 200, 0.9);
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes gate-shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px); }
+    40%       { transform: translateX(8px); }
+    60%       { transform: translateX(-5px); }
+    80%       { transform: translateX(5px); }
+  }
+
+  .gate-input--shake {
+    animation: gate-shake 0.4s ease;
+  }
 </style>
