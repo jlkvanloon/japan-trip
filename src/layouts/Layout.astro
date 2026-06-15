@@ -260,21 +260,12 @@ const { title, description = "Onze reis door Japan — november / december 2026"
     display: flex;
     align-items: center;
     justify-content: center;
-    clip-path: inset(0 0 0% 0);
-    transition: clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+    transition: opacity 0.6s ease;
   }
 
   .gate--out {
-    clip-path: inset(0 0 100% 0);
-    pointer-events: none;
-  }
-
-  .gate-inner {
-    transition: opacity 0.2s ease;
-  }
-
-  .gate--out .gate-inner {
     opacity: 0;
+    pointer-events: none;
   }
 
   .gate-inner {
