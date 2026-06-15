@@ -1,53 +1,55 @@
 name: Tokyo (Asakusa)
 slug: tokyo-asakusa
-startDate: "2026-12-03"
-endDate: "2026-12-06"
-
+startDate: 2026-12-03
+endDate: 2026-12-06
 travel:
-  - titel: Shinkansen naar Tokyo
+  - titel: Reis naar Tokyo
     from: Osaka
     method: Shinkansen
-    duur: "~2u30"
-
+    duur: ~3 uur
+  - titel: Vlucht naar Amsterdam
+    from: Narita Airport
+    method: Vliegtuig
+    tijden: 13:35 NRT - 19:40 AMS
+    vluchtnummer: KL862
+    duur: 14u05
+    klasse: Economy Comfort
+    bagage: 2x handbagage, 2x kleine tas, 1x ruimbagage (23kg)
 hotel:
   name: APA Hotel Asakusa Kuramae Kita
-  url: ""
-  checkIn: "15:00 – 00:00"
-  checkOut: "voor 10:00"
+  url: https://www.booking.com/hotel/jp/apahoteru-qian-cao-zang-qian-bei.nl.html?aid=311984&label=apahoteru-qian-cao-zang-qian-bei-72lLT0FzGqNr6pvkjAMuvAS675452859757%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-2098355915747%3Alp9189936%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YXORK0YJiVoOxcWODxYDaAA&sid=b698f1489f33d87b64339af256556473&all_sr_blocks=924238403_375827700_2_2_0&checkin=2026-10-10&checkout=2026-10-11&dest_id=-246227&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=924238403_375827700_2_2_0&hpos=1&matching_block_id=924238403_375827700_2_2_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=924238403_375827700_2_2_0__2844000&srepoch=1781553482&srpvid=6a6f8c648ce003f8&type=total&ucfs=1&
+  checkIn: 15:00 – 00:00
+  checkOut: tot 10:00
   breakfast: Niet inbegrepen
-  payment: "€657 — betaald 29 november"
-
+  payment: €657 betalen op 29 november
 restaurants:
-  - name: Asakusa Imahan
-    type: Sukiyaki
-    notes: Legendarische sukiyaki met Wagyu, vlak bij Senso-ji. Reserveren aanbevolen.
-  - name: Sometaro
-    type: Okonomiyaki
-    notes: Maak je eigen okonomiyaki op een teppan aan tafel. Sfeervol en goedkoop.
   - name: Tsukiji Outer Market
     type: Sushi / Streetfood
     notes: Vroeg ontbijt met verse sashimi en sushi-kraampjes. Open vanaf 05:00.
-  - name: Daikokuya Tempura
-    type: Tempura
-    notes: Beroemde tempura-zaak in Asakusa met wachtrij — kom vroeg.
-
 activities:
   brief:
-    - Sumo show met diner bij Asakusa Sumo Club (3 dec)
-    - Asakusa, Ueno & Akihabara (4 dec)
-    - Tsukiji markt, Ginza, Tokyo Tower & TeamLab (5 dec)
-    - Vlucht terug naar Amsterdam (6 dec)
-
+    - Sumo show met diner bij Asakusa Sumo Club
+    - "Asakusa, Ueno & Akihabara "
+    - Tsukiji markt, Ginza, Tokyo Tower & TeamLab
+    - Vlucht terug naar Amsterdam
 dagplanning:
   - titel: Aankomst & Sumo Avond
-    content: |
-      Shinkansen vanuit Osaka (~2u30) naar Tokyo. Inchecken APA Hotel Asakusa. 's Avonds: Asakusa Sumo Club — echte sumo-demonstratie gevolgd door traditioneel chankonabe-diner (stoofpot van sumoworstelaars). Perfecte afsluiter van de Japanreis.
+    content: "Shinkansen vanuit Osaka (~2u30) naar Tokyo. Inchecken APA Hotel
+      Asakusa. 's Avonds: Asakusa Sumo Club — echte sumo-demonstratie gevolgd
+      door traditioneel chankonabe-diner (stoofpot van sumoworstelaars)."
   - titel: Asakusa, Ueno & Akihabara
-    content: |
-      Ochtend: Senso-ji tempel — oudste tempel van Tokyo met de indrukwekkende Kaminarimon (Donderpoort) en Nakamise-dori souvenirsstraat. Middag: Ueno Park en het Tokyo National Museum. Avond: Akihabara, het elektronica- en anime-district vol arcades en gadgets.
+    content: >
+      Ochtend: Senso-ji tempel — oudste tempel van Tokyo met de indrukwekkende
+      Kaminarimon (Donderpoort) en Nakamise-dori souvenirsstraat. Middag: Ueno
+      Park en het Tokyo National Museum. Avond: Akihabara, het elektronica- en
+      anime-district vol arcades en gadgets.
   - titel: Tsukiji, Ginza, Tokyo Tower & TeamLab
-    content: |
-      Vroeg begin op Tsukiji buitenmarkt voor verse sushi- en sashimi-ontbijt. Ginza voor luxewinkels en architectuur. Middag Tokyo Tower. Afsluiting bij TeamLab Planets of Borderless — meeslepende digitale kunstinstallatie. Laatste avond Japan.
+    content: >
+      Vroeg begin op Tsukiji buitenmarkt voor verse sushi- en sashimi-ontbijt.
+      Ginza voor luxewinkels en architectuur. Middag Tokyo Tower. Afsluiting bij
+      TeamLab Planets of Borderless — meeslepende digitale kunstinstallatie.
+      Laatste avond Japan.
   - titel: Terug naar Amsterdam
-    content: |
-      Uitchecken voor 10:00. KLM KL862 vertrekt om 13:35 vanaf Narita (NRT), aankomst Amsterdam 19:40. Vluchtduur 14u05. Economy Comfort klasse.
+    content: >
+      Uitchecken voor 10:00. KLM KL862 vertrekt om 13:35 vanaf Narita (NRT),
+      aankomst Amsterdam 19:40. Vluchtduur 14u05. 
