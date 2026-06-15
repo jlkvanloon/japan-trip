@@ -1,50 +1,49 @@
 name: Osaka
 slug: osaka
-startDate: "2026-11-30"
-endDate: "2026-12-03"
-
+startDate: 2026-11-30
+endDate: 2026-12-03
 travel:
   - titel: Shinkansen naar Osaka
     from: Hiroshima
     method: Shinkansen
-    duur: "~1 uur"
-
+    duur: ~90 min
 hotel:
   name: Hotel Noum OSAKA
-  url: ""
-  checkIn: "15:00 – 23:00"
-  checkOut: "voor 11:00"
+  url: https://www.booking.com/hotel/jp/noum-osaka.nl.html?aid=311984&label=noum-osaka-k3P7w2lhZD9BHiRtvvmr9AS414006933280%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-770273393516%3Alp9189936%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YXORK0YJiVoOxcWODxYDaAA&sid=b698f1489f33d87b64339af256556473&all_sr_blocks=483083721_222929198_3_0_0&checkin=2026-10-10&checkout=2026-10-11&dest_id=-240905&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=483083721_222929198_3_0_0&hpos=1&matching_block_id=483083721_222929198_3_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=483083721_222929198_3_0_0__3179688&srepoch=1781553012&srpvid=08ef8b788f4709d7&type=total&ucfs=1&
+  checkIn: 15.00 – 23.00
+  checkOut: tot 11.00
   breakfast: Niet inbegrepen
-  payment: "€544 — betaald 24 november"
-
-restaurants:
-  - name: Ichifuji
-    type: Kushikatsu
-    notes: Gefrituurd vlees en groenten op stokjes. Heilige regel — nooit twee keer dippen.
-  - name: Mizuno
-    type: Okonomiyaki (Osaka-stijl)
-    notes: Iconic adres in Dotonbori, opgericht in 1945. Wachtrij maar de moeite waard.
-  - name: Kuromon Ichiba
-    type: Markt / Streetfood
-    notes: Verse sashimi, gegrilde sint-jakobsschelpen en tamagoyaki. Ochtend het levendigst.
-  - name: Kani Doraku
-    type: Krab
-    notes: "Het reuze-krabsymbool aan de gevel is onmisbaar Dotonbori-icoon. Specialiteit: krab."
-
+  payment: €544 betalen op 24 november
+restaurants: []
 activities:
   brief:
-    - Universal Studios Japan (1 december)
+    - Universal Studios Japan
     - Dotonbori & streetfood
     - Osaka Castle
     - Kuromon Ichiba markt
-
 dagplanning:
   - titel: Aankomst & Dotonbori
-    content: |
-      Shinkansen vanuit Hiroshima (~1 uur). Inchecken hotel. Middag: Osaka Castle Park — monumentaal wit kasteel met gouden details (herbouwd 1931), museum over Toyotomi Hideyoshi, herfstkleuren in het park. Avond: Dotonbori neonwijk — takoyaki, okonomiyaki, kushikatsu. Glico Man bord, Kani Doraku met draaiende krab aan de gevel.
+    content: Shinkansen vanuit Hiroshima (~90 min) waarna we inchecken in het hotel.
+      We arriveren later op de avond dus kunnen wat verkennen en dineren.
   - titel: Universal Studios Japan
-    content: |
-      Hele dag Universal Studios Japan. Universal Express Pass 7 met Mario Kart Minecart-rit en 6 andere attracties. Super Nintendo World en Wizarding World of Harry Potter zijn de hoogtepunten. Plan attracties vooraf — het park is groot. 's Avonds terug naar Dotonbori voor streetfood.
+    content: >
+      Hele dag Universal Studios Japan. Universal Express Pass 7 met een
+      fastpass voor de 7 populairste attracties ('Minecart & Selection'). Super
+      Nintendo World en Wizarding World of Harry Potter zijn de hoogtepunten. 
   - titel: Kuromon Markt & Vrije dag
-    content: |
-      Ochtend: Kuromon Ichiba markt ("keuken van Osaka") — 170 meter overdekte markt met verse sashimi, gegrilde sint-jakobsschelpen, tamagoyaki. Middag vrij voor Namba-wijk, Den Den Town (elektronica/anime) of Shinsekai-buurt. Avond: laatste avond in Osaka — Ichifuji voor kushikatsu of Mizuno voor okonomiyaki.
+    content: ""
+    subsections:
+      - beschrijving: >+
+          We vertrekken in de ochtend naar Osaka Castle waarna we rondstruinen
+          door de vintage winkelstraten genaamd America-Mura en Orange Street. 
+
+
+        titel: Ochtend - Osaka Castle, America-Mura en Orange Street
+      - titel: Middag - Kuromon Ichibi Market en Shinsekai wijk
+        beschrijving: Na wat te lunchen op de overdekte markt verkennen we de Shinsekai
+          wijk, een van de meest kleurrijke en nostalgische wijken van Osaka.
+      - titel: Avond - Dotonbori
+        beschrijving: "In de avond is het tijd voor Dotonbori: het kloppende hart van
+          het nachtleven en de eetcultuur. Bezienswaardigheden: Ebisu Bridge,
+          Glico Running Man sign, Hozenji Yochoko street en de Ukiyo Koji
+          steeg."
