@@ -1,58 +1,70 @@
 name: Kyoto
 slug: kyoto
-startDate: "2026-11-24"
-endDate: "2026-11-29"
-
+startDate: 2026-11-24
+endDate: 2026-11-29
 travel:
-  - titel: Shinkansen naar Kyoto
-    from: Hakone
-    method: Shinkansen
-    duur: "~1u20"
-
+  - titel: Lokale trein en Shinkansen
+    from: Hakone via Odawara Station
+    method: Lokale trein en Shinkansen
+    duur: ~3 uur
 hotel:
   name: Richmond Hotel Premier Kyoto Shijo
-  url: ""
-  checkIn: "14:00 – 00:00"
-  checkOut: "03:00 – 11:00"
+  url: https://www.booking.com/hotel/jp/ritutimondohoterupuremiajing-du-si-tiao.nl.html
+  checkIn: 14:00 – 00:00
+  checkOut: 03:00 – 11:00
   breakfast: Niet inbegrepen
-  payment: "€1863 — betaald 22 oktober"
-
+  payment: €1863 betalen op 22 oktober
 restaurants:
   - name: Nishiki Market
     type: Streetfood / Markt
-    notes: De "keuken van Kyoto" — smalle markt met 100+ stalletjes. Ideaal voor lunch.
+    notes: De "keuken van Kyoto", smalle markt met 100+ stalletjes. Ideaal voor lunch.
   - name: Pontocho
     type: Kaiseki / Izakaya
-    notes: Smal steegje langs de Kamo-rivier met restaurants op alle niveaus. Ga bij schemering.
-  - name: Tofu Restaurant Okutan
-    type: Kaiseki Tofu
-    notes: Vlak bij Nanzen-ji. Traditioneel yudofu (gestoomde tofu) in een tempelтuin. Reserveren.
-  - name: Ramen Sen-no-Kaze
-    type: Ramen
-    notes: Lokale favoriet in de Shijo-buurt. Rijke shoyu-bouillon, open tot laat.
-
+    notes: Smal steegje langs de Kamo-rivier met restaurants op alle niveaus.
 activities:
   brief:
     - Fushimi Inari schrijn (torii-poorten)
     - Arashiyama bamboebos & Tenryu-ji
-    - Hozugawa rivier boottocht (26 nov)
-    - Dagtocht naar Nara (27 nov)
-    - Gion-wijk bij schemering
-    - Filosofenpad & Nanzen-ji
-
+    - Hozugawa rivier boottocht
+    - Dagtocht naar Nara
+    - Gion-wijk bij met geisha's
+    - Theeceremonie
+todos:
+  - Theeceremonie boeken
 dagplanning:
-  - titel: Aankomst & Fushimi Inari
-    content: |
-      Shinkansen vanuit Hakone (via Odawara). Inchecken hotel. 's Middags Fushimi Inari Taisha — duizenden rode torii-poorten kronkelen omhoog langs Mt. Inari. De volledige wandeling naar de top duurt 2-3 uur; het onderste deel is het fotogeniekst. Entree gratis, paden dag en nacht open.
-  - titel: Arashiyama & Tenryu-ji
-    content: |
-      Vroeg naar Arashiyama bamboebos — kort maar magisch in de ochtendnevel. Vlakbij Tenryu-ji, een UNESCO Werelderfgoed zen-tuin met vijver en bergachtergrond. Optioneel fiets huren voor Jojakko-ji en de heuveltemples. Avond in Gion-wijk bij schemering — Hanamikoji-dori met theehuizen en lantaarnverlichting.
+  - titel: Aankomst
+    content: Ruimte voor spontane verkenning van Kyoto.
+  - titel: Higashiyama, Kiyomizo-dera tempel, theeceremonie en Gion wijk
+    content: ""
+    subsections:
+      - titel: Ochtend - Higashiyama
+        beschrijving: Hier bezoeken we de traditionele wijk Higashiyama met de Yasaka
+          Pagoda en de leuke straten Ninenzaka en Sannenzaka.
+      - titel: Middag - Kiyomizo-dera tempel
+        beschrijving: Een tempel met uitzicht over Kyoto.
+      - titel: Theeceremonie
+        beschrijving: "We gaan voor een traditionele theeceremonie waar we leren over
+          het maken van thee en matcha. "
+      - titel: Avond - Gion wijk van Geisha's
+        beschrijving: "Een wijk waarin je aan het einde van de middag allemaal Geisha's
+          ziet rondlopen. Bezienswaardigheden: Hanami-koji Dori street, Pontocho
+          Alley, Yasaka Shrine, Shinbashi-dori street, Kamo river, Shirakawa
+          Canal, Gion Tatsumi Bridge."
   - titel: Hozugawa Rivier Boottocht
-    content: |
-      Boottocht om 09:00 van Kameoka door de Hozugawa-kloof naar Arashiyama (~2 uur). Ervaren schippers langs beboste rotswanden — in late november spectaculaire herfstkleuring. Middag vrij in Arashiyama of terug naar de stad.
+    content: >
+      Boottocht om 09:00 van Kameoka door de Hozugawa-kloof naar Arashiyama (~2
+      uur). Ervaren schippers langs beboste rotswanden — in late november
+      spectaculaire herfstkleuring. Middag vrij in Arashiyama of terug naar de
+      stad.
   - titel: Dagtocht Nara
-    content: |
-      Kintetsu Line vanuit Kyoto Station naar Nara (~45 min). Nara Park met 1000+ vrijlopende herten die buigen voor hertenkoekjes. Todai-ji met de grootste bronzen Boeddha van Japan. Kasuga Taisha schrijn met honderden stenen lantaarns. 's Avonds Pontocho-steegje langs de Kamo-rivier.
+    content: >
+      Kintetsu Line vanuit Kyoto Station naar Nara (~45 min). Nara Park met
+      1000+ vrijlopende herten die buigen voor hertenkoekjes. Todai-ji met de
+      grootste bronzen Boeddha van Japan. Kasuga Taisha schrijn met honderden
+      stenen lantaarns. 's Avonds Pontocho-steegje langs de Kamo-rivier.
   - titel: Filosofenpad & Nanzen-ji
-    content: |
-      2km kasseipad langs een kanaal van Ginkaku-ji naar Nanzen-ji — omzoomd met kers- en ahornbomen, late novemberherfstkleuren mogelijk verbluffend. Eindig bij de massieve houten sanmon-poort van Nanzen-ji. Namiddag vrij in Nishiki Market ("keuken van Kyoto").
+    content: >
+      2km kasseipad langs een kanaal van Ginkaku-ji naar Nanzen-ji — omzoomd met
+      kers- en ahornbomen, late novemberherfstkleuren mogelijk verbluffend.
+      Eindig bij de massieve houten sanmon-poort van Nanzen-ji. Namiddag vrij in
+      Nishiki Market ("keuken van Kyoto").
