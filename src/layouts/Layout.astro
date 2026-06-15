@@ -64,6 +64,7 @@ const { title, description = "Onze reis door Japan — november / december 2026"
             autocomplete="off"
             autofocus
           />
+          <button type="submit" class="gate-btn">Open</button>
           <p id="gate-error" class="gate-error" hidden>Onjuist wachtwoord — probeer opnieuw</p>
         </form>
       </div>
@@ -329,6 +330,27 @@ const { title, description = "Onze reis door Japan — november / december 2026"
 
   .gate-input:focus {
     background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .gate-btn {
+    margin-top: 14px;
+    width: 240px;
+    padding: 13px 0;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius);
+    color: #fff;
+    font-family: "Shippori Mincho", serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .gate-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
     border-color: rgba(255, 255, 255, 0.6);
   }
 
