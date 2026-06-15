@@ -50,12 +50,19 @@ dagplanning:
           ziet rondlopen. Bezienswaardigheden: Hanami-koji Dori street, Pontocho
           Alley, Yasaka Shrine, Shinbashi-dori street, Kamo river, Shirakawa
           Canal, Gion Tatsumi Bridge."
-  - titel: Hozugawa Rivier Boottocht
-    content: >
-      Boottocht om 09:00 van Kameoka door de Hozugawa-kloof naar Arashiyama (~2
-      uur). Ervaren schippers langs beboste rotswanden — in late november
-      spectaculaire herfstkleuring. Middag vrij in Arashiyama of terug naar de
-      stad.
+  - titel: Fushimi Inari, Nishiki Market en Pontocho Alley
+    content: ""
+    subsections:
+      - titel: Ochtend - Fushimi Inari
+        beschrijving: "De welbekende duizenden feloranje poorten. De wandelroute omhoog
+          duurt 2 uur, maar we stoppen halverwege bij het Yotsutsuji viewpoint.
+          Dit is een drukke bestemming dus we moeten op tijd gaan. "
+      - titel: Middag - Nishiki Market
+        beschrijving: Overdekte marktstraat met leuke eettentjes en kraampjes.
+      - titel: Avond - Pontocho Alley
+        beschrijving: Mooiste straat van Kyoto die parallel loopt aan de
+          Kamo-gawa-rivier. De straat is bezaaid met traditionele winkels en
+          restaurants.
   - titel: Dagtocht Nara
     content: >
       Kintetsu Line vanuit Kyoto Station naar Nara (~45 min). Nara Park met
