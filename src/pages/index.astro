@@ -9,6 +9,52 @@ const destinations = entries.map((e) => e.data);
 ---
 
 <Layout title="Japan 2026">
-  <Calendar destinations={destinations} />
-  <TripMap destinations={destinations} />
+  <div class="trip-layout">
+    <Calendar destinations={destinations} />
+    <TripMap destinations={destinations} />
+  </div>
 </Layout>
+
+<style>
+  @media (min-width: 769px) {
+    .trip-layout {
+      display: flex;
+      align-items: stretch;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 8px;
+      gap: 24px;
+    }
+
+    .trip-layout > :global(.cal-section),
+    .trip-layout > :global(.map-section) {
+      flex: 1;
+      min-width: 0;
+      padding-top: 32px !important;
+      padding-bottom: 32px !important;
+    }
+
+    .trip-layout > :global(.map-section) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trip-layout :global(.cal-section .container),
+    .trip-layout :global(.map-section .container) {
+      max-width: none;
+      margin: 0;
+    }
+
+    .trip-layout :global(.map-section .container) {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trip-layout :global(#trip-map) {
+      flex: 1;
+      height: auto !important;
+      min-height: 320px;
+    }
+  }
+</style>

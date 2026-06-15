@@ -125,7 +125,9 @@ const mapData = sorted
         iconAnchor: [7, 7],
       });
 
-      L.marker(d.coords, { icon }).addTo(map);
+      L.marker(d.coords, { icon })
+        .bindTooltip(d.name, { permanent: true, direction: "bottom", offset: [0, 6], className: "city-label" })
+        .addTo(map);
     });
 
     // Fit map to route with padding
@@ -165,6 +167,23 @@ const mapData = sorted
 
 <style is:global>
   .leaflet-attribution-flag {
+    display: none !important;
+  }
+
+  .city-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    color: #1a1510 !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.03em !important;
+    text-shadow: 0 0 4px #fff, 0 0 8px #fff, 0 1px 3px rgba(255,255,255,0.9) !important;
+    padding: 0 !important;
+  }
+
+  .city-label::before {
     display: none !important;
   }
 </style>
