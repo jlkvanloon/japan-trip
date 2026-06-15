@@ -6,17 +6,17 @@ travel:
   - titel: Vlucht Mick & Eva
     from: Amsterdam (AMS)
     method: Vliegtuig
-    tijden: 14:20 AMS - 11:45+1 NRT
+    tijden: 14:20 AMS (18 Nov) - 11:45+1 NRT
     vluchtnummer: KL861
     duur: 13u25
-    klasse: ""
-    bagage: 2x handbagage, 2x kleine tas, 1x ruimbagage (23kg)
+    klasse: Economy Comfort
+    bagage: ""
   - titel: Vlucht Joa en Sas
     from: Tokyo (NRT)
     method: Vliegtuig
-    tijden: 13:45 NRT → 17:25 AMS
-    vluchtnummer: KL862
-    duur: 12u40
+    tijden: 14:20 AMS (21 Nov) - 11:45+1 NRT
+    vluchtnummer: KL861
+    duur: 13u25
     klasse: Premium Comfort
     bagage: 2x handbagage, 2x kleine tas, 1x ruimbagage (23kg)
 hotel:
@@ -25,7 +25,7 @@ hotel:
   checkIn: vanaf 15:00
   checkOut: tot 11:00
   breakfast: Inbegrepen
-  payment: €235 betalen op 16 november
+  payment: €235 betalen op 16 november (J&S)
 restaurants:
   - name: Ichiran Ramen
     type: Ramen
@@ -41,9 +41,7 @@ activities:
     - Shinjuku Gyoen & Omoide Yokocho
 todos:
   - Shibuya Sky tickets vooraf boeken
-  - IC-kaart opladen bij aankomst Narita
-  - Kawaguchiko bus reserveren voor Mount Fuji dag
-  - Yen pinnen bij 7-Eleven ATM
+  - Mount Fuji dagtrip boeken
 dagplanning:
   - titel: Aankomst & Shibuya
     subsections:
