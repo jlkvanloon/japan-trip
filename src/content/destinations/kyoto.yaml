@@ -7,6 +7,10 @@ travel:
     from: Hakone via Odawara Station
     method: Lokale trein en Shinkansen
     duur: ~3 uur
+  - titel: Dagtrip Nara
+    from: Kyoto
+    duur: 45min.
+    method: Trein
 hotel:
   name: Richmond Hotel Premier Kyoto Shijo
   url: https://www.booking.com/hotel/jp/ritutimondohoterupuremiajing-du-si-tiao.nl.html
@@ -69,9 +73,11 @@ dagplanning:
       1000+ vrijlopende herten die buigen voor hertenkoekjes. Todai-ji met de
       grootste bronzen Boeddha van Japan. Kasuga Taisha schrijn met honderden
       stenen lantaarns. 's Avonds Pontocho-steegje langs de Kamo-rivier.
-  - titel: Filosofenpad & Nanzen-ji
-    content: >
-      2km kasseipad langs een kanaal van Ginkaku-ji naar Nanzen-ji — omzoomd met
-      kers- en ahornbomen, late novemberherfstkleuren mogelijk verbluffend.
-      Eindig bij de massieve houten sanmon-poort van Nanzen-ji. Namiddag vrij in
-      Nishiki Market ("keuken van Kyoto").
+  - titel: Hozugawa River Boat Tour, Arashiyama Bamboo Forest en Tenryu-ji tempel
+    content: ""
+    subsections:
+      - titel: Ochtend - Hozugawa River Boat Tour
+        beschrijving: Schilderachtige 16 kilometer lange tocht (~2 uur) waarbij je met
+          een traditionele houten boot door een prachtige bergkloof vaart.
+      - titel: Middag -  Arashiyama Bamboo Forest en Tenryu-ji tempel
+        beschrijving: ""
