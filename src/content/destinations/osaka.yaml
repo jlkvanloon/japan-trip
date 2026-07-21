@@ -14,7 +14,18 @@ hotel:
   checkOut: tot 11.00
   breakfast: Niet inbegrepen
   payment: €544 betalen op 24 november
-restaurants: []
+restaurants:
+  - name: Kuromon Market
+    type: Foodmarket
+  - name: Daiki Suisan
+    type: Conveyer belt sushi
+  - name: Sakimoto Bakery
+    type: Bakkerij
+  - name: Hiro Sushi
+    type: Sushi restaurant
+  - name: Sushi Atsuya
+    type: Omakase
+    notes: Ongeveer 60 euro per persoon
 activities:
   brief:
     - Universal Studios Japan
