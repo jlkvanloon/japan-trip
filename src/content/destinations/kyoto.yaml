@@ -35,10 +35,25 @@ activities:
     - Theeceremonie
 todos:
   - Theeceremonie boeken - 1/2 maanden van te voren
+    https://www.getyourguide.com/nl-nl/kyoto-l96826/kyoto-tea-ceremony-ju-an-at-jotokuji-temple-t186627?partner_id=1KOALJY&utm_medium=online_publisher&cmp=kyoto&mkt_cmp=true&visitor-id=JOU8KZ2STCA4OM5F58ZWVWGAC8OI8Y4N&_pc=1,4&date_from=2026-10-06
   - Hozugawa River Boat Tour - 1/2 maanden van te voren
+    https://www.klook.com/nl/activity/74947-kyoto-arashiyama-hozugawa-river-boat-ride/
 dagplanning:
   - titel: Aankomst
     content: Ruimte voor spontane verkenning van Kyoto.
+  - titel: Fushimi Inari, Nishiki Market en Pontocho Alley
+    content: ""
+    subsections:
+      - titel: Ochtend - Fushimi Inari
+        beschrijving: "De welbekende duizenden feloranje poorten. De wandelroute omhoog
+          duurt 2 uur, maar we stoppen halverwege bij het Yotsutsuji viewpoint.
+          Dit is een drukke bestemming dus we moeten op tijd gaan. "
+      - titel: Middag - Nishiki Market
+        beschrijving: Overdekte marktstraat met leuke eettentjes en kraampjes.
+      - titel: Avond - Pontocho Alley
+        beschrijving: Mooiste straat van Kyoto die parallel loopt aan de
+          Kamo-gawa-rivier. De straat is bezaaid met traditionele winkels en
+          restaurants.
   - titel: Higashiyama, Kiyomizo-dera tempel, theeceremonie en Gion wijk
     content: ""
     subsections:
@@ -55,19 +70,6 @@ dagplanning:
           ziet rondlopen. Bezienswaardigheden: Hanami-koji Dori street, Pontocho
           Alley, Yasaka Shrine, Shinbashi-dori street, Kamo river, Shirakawa
           Canal, Gion Tatsumi Bridge."
-  - titel: Fushimi Inari, Nishiki Market en Pontocho Alley
-    content: ""
-    subsections:
-      - titel: Ochtend - Fushimi Inari
-        beschrijving: "De welbekende duizenden feloranje poorten. De wandelroute omhoog
-          duurt 2 uur, maar we stoppen halverwege bij het Yotsutsuji viewpoint.
-          Dit is een drukke bestemming dus we moeten op tijd gaan. "
-      - titel: Middag - Nishiki Market
-        beschrijving: Overdekte marktstraat met leuke eettentjes en kraampjes.
-      - titel: Avond - Pontocho Alley
-        beschrijving: Mooiste straat van Kyoto die parallel loopt aan de
-          Kamo-gawa-rivier. De straat is bezaaid met traditionele winkels en
-          restaurants.
   - titel: Dagtocht Nara
     content: >
       Kintetsu Line vanuit Kyoto Station naar Nara (~45 min). Nara Park met
