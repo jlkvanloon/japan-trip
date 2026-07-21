@@ -44,6 +44,9 @@ restaurants:
     type: Gesneden Wagyu in hete bouillon
   - name: Fluffy pancakes
     type: A happy pancake of Flippers (Shibuya)
+  - name: Hikiniku to come
+    notes: 1 week van te voren reserveren
+    type: Beef
 activities:
   brief:
     - Shibuya Crossing & Shibuya Sky
