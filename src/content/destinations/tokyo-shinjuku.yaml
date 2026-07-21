@@ -47,6 +47,23 @@ restaurants:
   - name: Hikiniku to come
     notes: 1 week van te voren reserveren
     type: Beef
+  - name: Uogashi Nihon-Ichi
+    type: Standing Sushi Bar
+    notes: Bij Shinjuku
+  - name: "Sushiro "
+    type: Conveyer belt sushi
+  - name: Menchirashi
+    type: Udon Carbonara Noodles
+  - name: Sushi No Midori
+    type: Sushi restaurant keten
+  - name: I'm donut?
+    type: Donuts
+  - name: Iyoshi cola
+    type: Cola
+  - name: Age.3
+    type: Bijzondere sandwiches
+  - name: Ningyocho Imahan Nihombashi Takashimaya
+    type: Sukiyaku en Shabu Shabu
 activities:
   brief:
     - Shibuya Crossing & Shibuya Sky
