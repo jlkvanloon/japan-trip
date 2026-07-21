@@ -33,6 +33,17 @@ restaurants:
   - name: Omoide Yokocho
     type: Yakitori
     notes: Smal steegje vol rokerige yakitori-kraampjes. Ga na 19:00.
+  - name: Isana Sushi
+    type: Omakase
+    notes: 140 euro met sake pairing
+  - name: Sushi Sen
+    type: Omakase
+    notes: 50 euro per persoon
+  - name: Ginza Shabuki
+    notes: ""
+    type: Gesneden Wagyu in hete bouillon
+  - name: Fluffy pancakes
+    type: A happy pancake of Flippers (Shibuya)
 activities:
   brief:
     - Shibuya Crossing & Shibuya Sky
