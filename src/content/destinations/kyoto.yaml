@@ -25,6 +25,27 @@ restaurants:
   - name: Pontocho
     type: Kaiseki / Izakaya
     notes: Smal steegje langs de Kamo-rivier met restaurants op alle niveaus.
+  - name: Wagyu Bungo Gion
+    type: Wagyu course
+    notes: 100-150 euro per persoon
+  - name: Sushi Azabu Higashiyama
+    type: Omakase
+    notes: Ongeveer 50 euro per persoon
+  - name: Engine Ramen
+    type: Ramen
+  - name: Gokago
+    type: Matcha
+  - name: Hikiniku to come
+    type: Beef
+  - name: Motoi
+    type: Gyoza
+  - name: Shiki
+    type: Udon Carbonara
+  - name: "Chao Chao "
+    type: Gyoza
+  - name: Ramen Sen-No-Kaze
+    type: Ramen
+    notes: geen reserveringen
 activities:
   brief:
     - Fushimi Inari schrijn (torii-poorten)
