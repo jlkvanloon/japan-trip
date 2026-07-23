@@ -1,0 +1,139 @@
+---
+import { theme } from '../config/theme';
+
+interface Destination {
+  slug: string;
+  name: string;
+  startDate: string;
+  endDate: string;
+  todos?: string[];
+}
+
+interface Props {
+  destinations: Destination[];
+}
+
+const { destinations } = Astro.props;
+const PALETTE = theme.palette;
+
+const sorted = [...destinations].sort(
+  (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+);
+
+const colorIndexMap = new Map<string, number>();
+let _ci = 0;
+for (const d of sorted) {
+  const group = d.slug.startsWith('tokyo-') ? 'tokyo' : d.slug;
+  if (!colorIndexMap.has(group)) colorIndexMap.set(group, _ci++);
+  colorIndexMap.set(d.slug, colorIndexMap.get(group)!);
+}
+const destColor = new Map(sorted.map(d => [d.slug, PALETTE[colorIndexMap.get(d.slug)! % PALETTE.length]]));
+
+const groups = sorted
+  .filter((d) => d.todos && d.todos.length > 0)
+  .map((d) => ({ dest: d, todos: d.todos as string[] }));
+
+const totalCount = groups.reduce((sum, g) => sum + g.todos.length, 0);
+---
+
+{totalCount > 0 && (
+  <section class="todos-section container">
+    <h2>To-do <span class="todo-count">{totalCount}</span></h2>
+    <div class="todo-groups">
+      {groups.map(({ dest, todos }) => (
+        <div class="todo-group" style={`--dest-color: ${destColor.get(dest.slug)}`}>
+          <a class="todo-group-title" href={`/bestemmingen/${dest.slug}`}>{dest.name}</a>
+          <ul class="todo-list">
+            {todos.map((todo) => (
+              <li class="todo-item">{todo}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .todos-section {
+    margin: 0 auto 64px;
+    padding-top: 8px;
+  }
+
+  .todos-section h2 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .todo-count {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 0.7rem;
+  }
+
+  .todo-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .todo-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--dest-color, var(--accent));
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+  }
+
+  .todo-group-title {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dest-color, var(--accent-dark));
+    margin-bottom: 14px;
+    text-decoration: none;
+  }
+
+  .todo-group-title:hover {
+    text-decoration: underline;
+  }
+
+  .todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .todo-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text);
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+  }
+
+  .todo-item::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    margin-top: 2px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+</style>
